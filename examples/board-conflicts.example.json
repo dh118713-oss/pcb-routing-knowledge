@@ -1,0 +1,3241 @@
+{
+  "document_type": "board_coordination_conflict_example",
+  "example_origin": "synthetic_example",
+  "example_notice": "合成案例，仅演示从器件/引脚角色/网络区段到共享资源和整板冲突闭环。所有物理实例、引脚号、几何、测量和选择均未知；所有检查 status=unknown，planning_state=planning。候选规则和定性建议尚未成为 EDA 可执行约束。",
+  "schema_version": 1,
+  "formal_constraints": false,
+  "candidate_basis_notice": "以下映射仅为底层规则的已核读研究入口；不得把汇总 criterion 的全部内容归于任一来源。正式实例化必须核对来源 supports、器件/封装/拓扑/版本/工况，再给出可审查的判据和单位。",
+  "board": {
+    "board_id": "SYNTH-MIXED-MULTILAYER-001",
+    "board_revision": null,
+    "layer_count": null,
+    "stackup": null,
+    "geometry_available": false,
+    "solver_available": false,
+    "manufacturing_capability_revision": null,
+    "coordinates": null,
+    "netlist_revision": null,
+    "operating_modes": null
+  },
+  "domains": [
+    {
+      "id": "D-RF24",
+      "name": "2.4GHz RF",
+      "known_inputs": {
+        "band_label": "2.4GHz",
+        "frequency_range_hz": null,
+        "chip_part": null,
+        "antenna": null
+      },
+      "missing_inputs": [
+        "实际工作频率范围/协议配置",
+        "器件/封装/匹配网络版本",
+        "天线与外壳环境",
+        "目标阻抗/损耗/谐波要求",
+        "实际层叠和禁布区"
+      ]
+    },
+    {
+      "id": "D-BUCK",
+      "name": "Buck power",
+      "known_inputs": {
+        "topology": "buck",
+        "input_voltage": null,
+        "output_voltage": null,
+        "continuous_current": null,
+        "switching_frequency": null
+      },
+      "missing_inputs": [
+        "控制器料号/封装",
+        "高di/dt回路和热损耗",
+        "铜厚/温升/压降预算",
+        "实际输入/输出电容与电感"
+      ]
+    },
+    {
+      "id": "D-ADC",
+      "name": "ADC analog",
+      "known_inputs": {
+        "converter_part": null,
+        "resolution": null,
+        "reference": null,
+        "sample_bandwidth": null
+      },
+      "missing_inputs": [
+        "AGND/DGND器件要求",
+        "采样回路和基准噪声预算",
+        "时钟边沿",
+        "输入源阻抗与保护"
+      ]
+    },
+    {
+      "id": "D-DDR",
+      "name": "DDR memory",
+      "known_inputs": {
+        "memory_generation": null,
+        "data_rate": null,
+        "controller_part": null,
+        "byte_lanes": null
+      },
+      "missing_inputs": [
+        "器件指南/拓扑/偏斜预算",
+        "封装延迟",
+        "层叠/阻抗/过孔模型",
+        "供电噪声预算"
+      ]
+    },
+    {
+      "id": "D-CAN-ISO",
+      "name": "Isolated CAN",
+      "known_inputs": {
+        "interface": "CAN",
+        "isolated": true,
+        "transceiver_part": null,
+        "isolation_rating": null
+      },
+      "missing_inputs": [
+        "隔离器和电源架构",
+        "适用安全标准/地区/污染/海拔",
+        "连接器/线缆/机壳",
+        "共模/ESD/浪涌要求"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "U-BUCK",
+      "kind": "device_role",
+      "domain": "D-BUCK",
+      "role": "Buck控制器或集成功率级",
+      "physical_binding": null,
+      "status": "unknown",
+      "part_number": null,
+      "package": null,
+      "instance_id": null
+    },
+    {
+      "id": "U-ADC",
+      "kind": "device_role",
+      "domain": "D-ADC",
+      "role": "数据转换器",
+      "physical_binding": null,
+      "status": "unknown",
+      "part_number": null,
+      "package": null,
+      "instance_id": null
+    },
+    {
+      "id": "U-RF",
+      "kind": "device_role",
+      "domain": "D-RF24",
+      "role": "无线芯片",
+      "physical_binding": null,
+      "status": "unknown",
+      "part_number": null,
+      "package": null,
+      "instance_id": null
+    },
+    {
+      "id": "U-DDR",
+      "kind": "device_role",
+      "domain": "D-DDR",
+      "role": "控制器/存储器功能关系，实例数量未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "part_number": null,
+      "package": null,
+      "instance_id": null
+    },
+    {
+      "id": "U-ISO",
+      "kind": "device_role",
+      "domain": "D-CAN-ISO",
+      "role": "隔离功能，独立或集成实现未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "part_number": null,
+      "package": null,
+      "instance_id": null
+    },
+    {
+      "id": "U-CAN",
+      "kind": "device_role",
+      "domain": "D-CAN-ISO",
+      "role": "CAN收发器功能",
+      "physical_binding": null,
+      "status": "unknown",
+      "part_number": null,
+      "package": null,
+      "instance_id": null
+    },
+    {
+      "id": "P-BUCK-VIN",
+      "kind": "pin_role",
+      "domain": "D-BUCK",
+      "role": "输入电源",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-BUCK",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-BUCK-PGND",
+      "kind": "pin_role",
+      "domain": "D-BUCK",
+      "role": "功率回流",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-BUCK",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-BUCK-SW",
+      "kind": "pin_role",
+      "domain": "D-BUCK",
+      "role": "开关节点",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-BUCK",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-BUCK-FB",
+      "kind": "pin_role",
+      "domain": "D-BUCK",
+      "role": "反馈检测",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-BUCK",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-BUCK-EP",
+      "kind": "pin_role",
+      "domain": "D-BUCK",
+      "role": "暴露焊盘，是否存在及其电气网络须查实际封装",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-BUCK",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ADC-IN",
+      "kind": "pin_role",
+      "domain": "D-ADC",
+      "role": "模拟输入",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ADC",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ADC-REF",
+      "kind": "pin_role",
+      "domain": "D-ADC",
+      "role": "基准输入/输出，方向待查器件",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ADC",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ADC-CLK",
+      "kind": "pin_role",
+      "domain": "D-ADC",
+      "role": "采样时钟",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ADC",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ADC-DOUT",
+      "kind": "pin_role",
+      "domain": "D-ADC",
+      "role": "数字输出",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ADC",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ADC-PWR",
+      "kind": "pin_role",
+      "domain": "D-ADC",
+      "role": "模拟/数字电源角色，数量未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ADC",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ADC-GND",
+      "kind": "pin_role",
+      "domain": "D-ADC",
+      "role": "AGND/DGND或共用地，结构未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ADC",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-RF-PORT",
+      "kind": "pin_role",
+      "domain": "D-RF24",
+      "role": "射频端口，单端/差分及匹配未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-RF",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-DDR-DQ",
+      "kind": "pin_role",
+      "domain": "D-DDR",
+      "role": "代表性数据角色，数量及分组未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-DDR",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-DDR-DQS",
+      "kind": "pin_role",
+      "domain": "D-DDR",
+      "role": "代表性数据选通信号，形式未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-DDR",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-DDR-CK",
+      "kind": "pin_role",
+      "domain": "D-DDR",
+      "role": "代表性时钟角色，形式未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-DDR",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ISO-GNDA",
+      "kind": "pin_role",
+      "domain": "D-CAN-ISO",
+      "role": "隔离A侧本地返回",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ISO",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "P-ISO-GNDB",
+      "kind": "pin_role",
+      "domain": "D-CAN-ISO",
+      "role": "隔离B侧本地返回",
+      "physical_binding": null,
+      "status": "unknown",
+      "device": "U-ISO",
+      "pin_number": null,
+      "net_id": null
+    },
+    {
+      "id": "N-BUCK-OUT",
+      "kind": "network_or_channel_role",
+      "domain": "D-BUCK",
+      "role": "输出供电网络与检测分支的符号父网络",
+      "physical_binding": null,
+      "status": "unknown",
+      "netlist_net_ids": null
+    },
+    {
+      "id": "N-RF",
+      "kind": "network_or_channel_role",
+      "domain": "D-RF24",
+      "role": "RF通道逻辑父路径，匹配器件可能使其跨越多个物理网络",
+      "physical_binding": null,
+      "status": "unknown",
+      "netlist_net_ids": null
+    },
+    {
+      "id": "N-DDR-DATA",
+      "kind": "network_or_channel_role",
+      "domain": "D-DDR",
+      "role": "代表性DDR数据信号逻辑父路径",
+      "physical_binding": null,
+      "status": "unknown",
+      "netlist_net_ids": null
+    },
+    {
+      "id": "N-CAN",
+      "kind": "network_or_channel_role",
+      "domain": "D-CAN-ISO",
+      "role": "CAN端口逻辑父路径，保护器件可能分隔物理网络",
+      "physical_binding": null,
+      "status": "unknown",
+      "netlist_net_ids": null
+    },
+    {
+      "id": "S-BUCK-MAIN",
+      "kind": "network_section_role",
+      "domain": "D-BUCK",
+      "role": "负载供电主段",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-BUCK-OUT",
+      "endpoints": [
+        null,
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-BUCK-SENSE",
+      "kind": "network_section_role",
+      "domain": "D-BUCK",
+      "role": "输出取样到FB的高阻检测支路",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-BUCK-OUT",
+      "endpoints": [
+        null,
+        "P-BUCK-FB"
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-RF-MATCH",
+      "kind": "network_section_role",
+      "domain": "D-RF24",
+      "role": "芯片端与匹配网络区段",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-RF",
+      "endpoints": [
+        "P-RF-PORT",
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-RF-LINE",
+      "kind": "network_section_role",
+      "domain": "D-RF24",
+      "role": "匹配后均匀馈线候选区段",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-RF",
+      "endpoints": [
+        null,
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-DDR-FANOUT",
+      "kind": "network_section_role",
+      "domain": "D-DDR",
+      "role": "封装扇出区段",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-DDR-DATA",
+      "endpoints": [
+        "P-DDR-DQ",
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-DDR-ROUTE",
+      "kind": "network_section_role",
+      "domain": "D-DDR",
+      "role": "传输区段",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-DDR-DATA",
+      "endpoints": [
+        null,
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-DDR-VIA",
+      "kind": "network_section_role",
+      "domain": "D-DDR",
+      "role": "换层候选区段，是否需要过孔未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-DDR-DATA",
+      "endpoints": [
+        null,
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-CAN-EXTERNAL",
+      "kind": "network_section_role",
+      "domain": "D-CAN-ISO",
+      "role": "连接器至保护器件的未保护侧候选区段",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-CAN",
+      "endpoints": [
+        null,
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "S-CAN-PROTECTED",
+      "kind": "network_section_role",
+      "domain": "D-CAN-ISO",
+      "role": "保护器件至收发器的受保护侧候选区段",
+      "physical_binding": null,
+      "status": "unknown",
+      "parent_network": "N-CAN",
+      "endpoints": [
+        null,
+        null
+      ],
+      "geometry": null,
+      "reference_structure": null
+    },
+    {
+      "id": "L-BUCK-INPUT",
+      "kind": "critical_loop_role",
+      "domain": "D-BUCK",
+      "role": "输入电容与功率开关的换流回路，完整开关/电容/返回结构未知",
+      "physical_binding": null,
+      "status": "unknown",
+      "members": [
+        "P-BUCK-VIN",
+        "P-BUCK-PGND"
+      ],
+      "membership_complete": false
+    }
+  ],
+  "shared_resources": [
+    {
+      "id": "R-STACKUP",
+      "type": "stackup_reference",
+      "scope": "全部信号/电源/热路径",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "R-RETURN",
+      "type": "shared_return_and_plane_boundaries",
+      "scope": "RF/Buck/ADC/DDR/CAN各域及跨层点",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "R-PDN",
+      "type": "power_distribution",
+      "scope": "Buck输出、ADC参考/模拟电源、DDR电源、RF电源、隔离侧电源",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "R-THERMAL",
+      "type": "thermal_spread_and_mechanical",
+      "scope": "Buck功率级、RF屏蔽/天线、ADC热敏节点、连接器与机壳",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "R-CORRIDOR",
+      "type": "routing_corridors",
+      "scope": "DDR走廊、RF匹配/天线区、Buck高di/dt回路、ADC采样区",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "R-ISO",
+      "type": "isolation_and_creepage_boundary",
+      "scope": "CAN隔离两侧、隔离电源/屏蔽/机壳",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "R-DFT",
+      "type": "manufacturing_and_test_access",
+      "scope": "测试点、治具、阻抗coupon、热测点、装配/探针空间",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    }
+  ],
+  "candidate_basis": [
+    {
+      "basis_id": "B-PWR-BUCK",
+      "rule_ids": [
+        "PWR-001",
+        "PWR-002",
+        "PWR-003",
+        "PWR-006"
+      ],
+      "source_id": "VENDOR-TI-SLYT614",
+      "locator": "PDF pp.1-4; Steps 1-5",
+      "applicability_status": "unknown",
+      "scope_limit": "TPS62xxx集成Buck示例；本例具体器件/拓扑细节未知，过孔数量等经验不作默认",
+      "numeric_permission": false,
+      "source_access_status": "content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-PWR-THERMAL",
+      "rule_ids": [
+        "PWR-006",
+        "PWR-007"
+      ],
+      "source_id": "VENDOR-NEXPERIA-AN90003",
+      "locator": "PDF pp.2-4,10-14,21-23",
+      "applicability_status": "unknown",
+      "scope_limit": "LFPAK热模型范围；不替代本例封装、板材、铜形与环境",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-RETURN",
+      "rule_ids": [
+        "BAS-001",
+        "BAS-002"
+      ],
+      "source_id": "BOOK-003",
+      "locator": "出版社合法样章 §§7.13/7.14，网络第13/14页",
+      "applicability_status": "unknown",
+      "scope_limit": "仅已核读文本；图中公式、距离、跨电位电容数值未验证",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-HS",
+      "rule_ids": [
+        "HS-001",
+        "HS-002",
+        "HS-004"
+      ],
+      "source_id": "VENDOR-TI-SLLA414",
+      "locator": "PDF pp.3-5,6-11,15-20",
+      "applicability_status": "unknown",
+      "scope_limit": "信号调理器/USB指南；不替代DDR平台规范或接口认证",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-ADC-GND",
+      "rule_ids": [
+        "ANA-001",
+        "ANA-004"
+      ],
+      "source_id": "VENDOR-ADI-MT031",
+      "locator": "PDF pp.4-8,10-14",
+      "applicability_status": "unknown",
+      "scope_limit": "不同数字电流和单卡/多卡架构有不同接地条件；不由AGND/DGND名称决定割地",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-DECOUPLE",
+      "rule_ids": [
+        "ANA-002"
+      ],
+      "source_id": "VENDOR-ADI-MT101",
+      "locator": "PDF pp.1-7",
+      "applicability_status": "unknown",
+      "scope_limit": "去耦回路与寄生机制；具体容量/距离须按器件与工作点验证",
+      "numeric_permission": false,
+      "source_access_status": "content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-COUPLING",
+      "rule_ids": [
+        "ANA-004"
+      ],
+      "source_id": "VENDOR-ADI-MT095",
+      "locator": "PDF pp.2-7",
+      "applicability_status": "unknown",
+      "scope_limit": "源、路径、受体及耦合机制；不提供本板通用隔离距离或EMC合规结论",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-RF",
+      "rule_ids": [
+        "HS-006"
+      ],
+      "source_id": "VENDOR-TI-SWRA640",
+      "locator": "PDF pp.15-20 §§4.1-4.11",
+      "applicability_status": "unknown",
+      "scope_limit": "仅所列CC13xx/CC26xx平台；仅知道2.4GHz不足以匹配",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-DDR",
+      "rule_ids": [
+        "INT-002",
+        "INT-003",
+        "INT-004"
+      ],
+      "source_id": "VENDOR-TI-SPRABI1",
+      "locator": "PDF pp.14-20 §§6.2-6.3.1",
+      "applicability_status": "unknown",
+      "scope_limit": "TI KeyStone DDR3；本例DDR代际/控制器未知，不能采用其拓扑或任何数值",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-CAN",
+      "rule_ids": [
+        "INT-006",
+        "INT-007"
+      ],
+      "source_id": "VENDOR-TI-SLLA270",
+      "locator": "PDF pp.5-11 §4",
+      "applicability_status": "unknown",
+      "scope_limit": "2008年经典高速CAN；CAN FD/XL或当前标准须另查，终端与stub示例不作默认",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-ISO",
+      "rule_ids": [
+        "INT-007",
+        "INT-008",
+        "INT-009"
+      ],
+      "source_id": "VENDOR-TI-SLLA284",
+      "locator": "PDF p.8, pp.10-18",
+      "applicability_status": "unknown",
+      "scope_limit": "器件隔离参数和PCB指导；安全距离必须由实际器件/产品标准/环境确定",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-MFG-QFN",
+      "rule_ids": [
+        "MFG-002",
+        "MFG-003",
+        "MFG-004",
+        "MFG-006"
+      ],
+      "source_id": "VENDOR-TI-SLUA271",
+      "locator": "PDF pp.7-8,10-15",
+      "applicability_status": "unknown",
+      "scope_limit": "TI QFN/SON；尺寸/覆盖/空洞不通用，MFG-006仅检验与工艺实验部分有本文支持",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    },
+    {
+      "basis_id": "B-MFG-PAD",
+      "rule_ids": [
+        "MFG-002",
+        "MFG-003",
+        "MFG-004",
+        "MFG-006"
+      ],
+      "source_id": "VENDOR-TI-SLMA002",
+      "locator": "PDF pp.8-15",
+      "applicability_status": "unknown",
+      "scope_limit": "PowerPAD；不替代任意封装工艺；DFT与版本冻结属于本库综合工程要求",
+      "numeric_permission": false,
+      "source_access_status": "partial_content_reviewed",
+      "source_checked_on": "2026-09-23"
+    }
+  ],
+  "local_constraints": [
+    {
+      "constraint_id": "LC-RF-001",
+      "owner": "D-RF24",
+      "scope": "电路域",
+      "criterion": "分别核对芯片端匹配与均匀馈线；参考结构、天线和机械环境共同审查",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "HS-006",
+        "ANA-004"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SWRA640",
+        "VENDOR-ADI-MT095"
+      ],
+      "basis_refs": [
+        "B-RF",
+        "B-COUPLING"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-STACKUP",
+        "R-CORRIDOR",
+        "R-RETURN",
+        "R-THERMAL"
+      ],
+      "dependencies": [
+        "U-RF",
+        "S-RF-MATCH",
+        "S-RF-LINE"
+      ],
+      "required_inputs": [
+        "具体料号/封装/参考设计",
+        "天线/外壳",
+        "真实层叠及调谐证据"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-BUCK-001",
+      "owner": "D-BUCK",
+      "scope": "电路域",
+      "criterion": "VIN/PGND、SW、FB、暴露焊盘与输出主路分开处理，再合并检查压降、热、回流与EMC",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "PWR-001",
+        "PWR-002",
+        "PWR-003",
+        "PWR-006",
+        "PWR-007"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SLYT614",
+        "VENDOR-NEXPERIA-AN90003"
+      ],
+      "basis_refs": [
+        "B-PWR-BUCK",
+        "B-PWR-THERMAL"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-PDN",
+        "R-RETURN",
+        "R-THERMAL",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "U-BUCK",
+        "L-BUCK-INPUT",
+        "S-BUCK-MAIN",
+        "S-BUCK-SENSE"
+      ],
+      "required_inputs": [
+        "控制器/功率器件/无源件",
+        "工作模式/损耗/压降预算",
+        "真实铜形/层叠/热边界"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-ADC-001",
+      "owner": "D-ADC",
+      "scope": "电路域",
+      "criterion": "输入、基准、电源、时钟和数字输出分别检查，并与共享回流/噪声预算协调",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "ANA-001",
+        "ANA-004",
+        "ANA-002",
+        "BAS-001",
+        "BAS-002"
+      ],
+      "source_ids": [
+        "VENDOR-ADI-MT031",
+        "VENDOR-ADI-MT101",
+        "VENDOR-ADI-MT095",
+        "BOOK-003"
+      ],
+      "basis_refs": [
+        "B-ADC-GND",
+        "B-DECOUPLE",
+        "B-COUPLING",
+        "B-RETURN"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-PDN",
+        "R-RETURN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "U-ADC",
+        "P-ADC-IN",
+        "P-ADC-REF",
+        "P-ADC-CLK",
+        "P-ADC-DOUT"
+      ],
+      "required_inputs": [
+        "ADC与基准datasheet",
+        "采样/噪声/时钟预算",
+        "真实电源和回流结构"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "source_scope_note": "原始来源只支持其已核读接地/去耦/耦合/时钟讨论；具体输入模型、采样回冲、基准动态负载和数字接口判据必须补齐目标器件资料。"
+    },
+    {
+      "constraint_id": "LC-DDR-001",
+      "owner": "D-DDR",
+      "scope": "电路域",
+      "criterion": "DQ/DQS/CK按平台角色分组，扇出/传输/换层分段并保留端到端时序和供电预算",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "INT-002",
+        "INT-003",
+        "INT-004",
+        "HS-001",
+        "HS-002",
+        "HS-004"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SPRABI1",
+        "VENDOR-TI-SLLA414"
+      ],
+      "basis_refs": [
+        "B-DDR",
+        "B-HS"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-CORRIDOR",
+        "R-STACKUP",
+        "R-PDN",
+        "R-DFT"
+      ],
+      "dependencies": [
+        "U-DDR",
+        "P-DDR-DQ",
+        "P-DDR-DQS",
+        "P-DDR-CK",
+        "S-DDR-FANOUT",
+        "S-DDR-ROUTE",
+        "S-DDR-VIA"
+      ],
+      "required_inputs": [
+        "代际/控制器/存储器/拓扑",
+        "封装延迟和时序预算",
+        "通道模型/实际层叠/工作模式"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-CAN-001",
+      "owner": "D-CAN-ISO",
+      "scope": "电路域",
+      "criterion": "隔离A/B侧回流、保护前后路径、线缆终端和全部层/机械导体共同审查",
+      "strength": "must",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 1,
+      "rule_ids": [
+        "INT-006",
+        "INT-007",
+        "INT-008",
+        "INT-009"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SLLA270",
+        "VENDOR-TI-SLLA284"
+      ],
+      "basis_refs": [
+        "B-CAN",
+        "B-ISO"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-ISO",
+        "R-RETURN",
+        "R-DFT",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "U-ISO",
+        "U-CAN",
+        "P-ISO-GNDA",
+        "P-ISO-GNDB",
+        "S-CAN-EXTERNAL",
+        "S-CAN-PROTECTED"
+      ],
+      "required_inputs": [
+        "CAN版本及实际器件",
+        "产品标准/地区/环境",
+        "隔离两侧结构/机壳/线缆"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-BUCK-INPUT",
+      "owner": "L-BUCK-INPUT",
+      "scope": "关键回路",
+      "criterion": "按实际开关状态闭合输入换流路径；不能用单根VIN线宽代表整个回路",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "PWR-001",
+        "PWR-002",
+        "PWR-003",
+        "PWR-006"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SLYT614"
+      ],
+      "basis_refs": [
+        "B-PWR-BUCK"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-RETURN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "P-BUCK-VIN",
+        "P-BUCK-PGND",
+        "R-STACKUP"
+      ],
+      "required_inputs": [
+        "原理图/开关结构/输入电容/完整返回"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-BUCK-SW",
+      "owner": "P-BUCK-SW",
+      "scope": "引脚角色",
+      "criterion": "按开关节点的寄生/热/辐射取舍检查铜形和相邻敏感受体",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "PWR-001",
+        "PWR-002",
+        "PWR-003",
+        "PWR-006",
+        "ANA-004"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SLYT614",
+        "VENDOR-ADI-MT095"
+      ],
+      "basis_refs": [
+        "B-PWR-BUCK",
+        "B-COUPLING"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-CORRIDOR",
+        "R-THERMAL"
+      ],
+      "dependencies": [
+        "U-BUCK",
+        "R-STACKUP"
+      ],
+      "required_inputs": [
+        "边沿/电压摆幅/铜形/周边结构"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-BUCK-FB",
+      "owner": "S-BUCK-SENSE",
+      "scope": "网络区段",
+      "criterion": "识别真正的取样点与参考返回，检查SW耦合；不能把负载主路尺寸策略复制到高阻支路",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "PWR-001",
+        "PWR-002",
+        "PWR-003",
+        "PWR-006"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SLYT614"
+      ],
+      "basis_refs": [
+        "B-PWR-BUCK"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-RETURN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "P-BUCK-FB",
+        "S-BUCK-MAIN",
+        "P-BUCK-SW"
+      ],
+      "required_inputs": [
+        "反馈拓扑/取样点/参考地/输入阻抗"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-BUCK-EP",
+      "owner": "P-BUCK-EP",
+      "scope": "引脚/封装角色",
+      "criterion": "先确认是否存在暴露焊盘及其允许网络，再联合验证焊接、热扩散和过孔；不可自动接地",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "PWR-006",
+        "PWR-007",
+        "MFG-002",
+        "MFG-003",
+        "MFG-004",
+        "MFG-006"
+      ],
+      "source_ids": [
+        "VENDOR-NEXPERIA-AN90003",
+        "VENDOR-TI-SLUA271",
+        "VENDOR-TI-SLMA002"
+      ],
+      "basis_refs": [
+        "B-PWR-THERMAL",
+        "B-MFG-QFN",
+        "B-MFG-PAD"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-THERMAL",
+        "R-DFT",
+        "R-RETURN"
+      ],
+      "dependencies": [
+        "U-BUCK",
+        "R-STACKUP"
+      ],
+      "required_inputs": [
+        "具体封装焊盘定义/网络",
+        "器件热与装配指南/板厂能力"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-ADC-IN",
+      "owner": "P-ADC-IN",
+      "scope": "引脚角色",
+      "criterion": "按源阻抗、采样回冲和保护器件建立输入回路，单独分配输入误差预算",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "ANA-001",
+        "ANA-004"
+      ],
+      "source_ids": [
+        "VENDOR-ADI-MT031",
+        "VENDOR-ADI-MT095"
+      ],
+      "basis_refs": [
+        "B-ADC-GND",
+        "B-COUPLING"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-RETURN",
+        "R-PDN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "P-ADC-GND"
+      ],
+      "required_inputs": [
+        "ADC输入模型/源阻抗/采样工况"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "source_scope_note": "原始来源只支持其已核读接地/去耦/耦合/时钟讨论；具体输入模型、采样回冲、基准动态负载和数字接口判据必须补齐目标器件资料。"
+    },
+    {
+      "constraint_id": "LC-ADC-REF",
+      "owner": "P-ADC-REF",
+      "scope": "引脚角色",
+      "criterion": "按基准动态负载、去耦及返回路径检查；不让电源回路合格代替基准噪声验证",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "ANA-002",
+        "ANA-004"
+      ],
+      "source_ids": [
+        "VENDOR-ADI-MT101",
+        "VENDOR-ADI-MT095"
+      ],
+      "basis_refs": [
+        "B-DECOUPLE",
+        "B-COUPLING"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-RETURN",
+        "R-PDN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "P-ADC-GND",
+        "R-PDN"
+      ],
+      "required_inputs": [
+        "基准器件与ADC指南/噪声预算"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "source_scope_note": "原始来源只支持其已核读接地/去耦/耦合/时钟讨论；具体输入模型、采样回冲、基准动态负载和数字接口判据必须补齐目标器件资料。"
+    },
+    {
+      "constraint_id": "LC-ADC-CLK",
+      "owner": "P-ADC-CLK",
+      "scope": "引脚角色",
+      "criterion": "以采样时钟抖动、边沿及返回结构检查，并审查对输入/基准耦合",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "ANA-001",
+        "ANA-004",
+        "HS-001",
+        "HS-002",
+        "HS-004"
+      ],
+      "source_ids": [
+        "VENDOR-ADI-MT031",
+        "VENDOR-TI-SLLA414"
+      ],
+      "basis_refs": [
+        "B-ADC-GND",
+        "B-HS"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-RETURN",
+        "R-PDN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "P-ADC-GND",
+        "P-ADC-IN",
+        "P-ADC-REF"
+      ],
+      "required_inputs": [
+        "时钟接口/抖动预算/边沿/时序"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "source_scope_note": "原始来源只支持其已核读接地/去耦/耦合/时钟讨论；具体输入模型、采样回冲、基准动态负载和数字接口判据必须补齐目标器件资料。"
+    },
+    {
+      "constraint_id": "LC-ADC-DOUT",
+      "owner": "P-ADC-DOUT",
+      "scope": "引脚角色",
+      "criterion": "按实际数字接口/负载及同时切换工作模式检查回流，评估对模拟受体的共享阻抗影响",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "ANA-001",
+        "ANA-004"
+      ],
+      "source_ids": [
+        "VENDOR-ADI-MT031",
+        "VENDOR-ADI-MT095"
+      ],
+      "basis_refs": [
+        "B-ADC-GND",
+        "B-COUPLING"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-RETURN",
+        "R-PDN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "P-ADC-GND",
+        "P-ADC-IN",
+        "P-ADC-REF"
+      ],
+      "required_inputs": [
+        "数字接口/负载/工作模式/器件接地要求"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "source_scope_note": "原始来源只支持其已核读接地/去耦/耦合/时钟讨论；具体输入模型、采样回冲、基准动态负载和数字接口判据必须补齐目标器件资料。"
+    },
+    {
+      "constraint_id": "LC-RF-SECTIONS",
+      "owner": "S-RF-MATCH",
+      "scope": "通道区段关系",
+      "criterion": "匹配区与均匀馈线分别建模；仅缩短或加宽其中一段不能代表原参考设计等效",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "HS-006"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SWRA640"
+      ],
+      "basis_refs": [
+        "B-RF"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-STACKUP",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "P-RF-PORT",
+        "S-RF-LINE",
+        "U-RF"
+      ],
+      "required_inputs": [
+        "匹配网络/阻抗截面/参考设计/封装/EM或测量模型"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-DDR-SECTIONS",
+      "owner": "S-DDR-ROUTE",
+      "scope": "通道区段关系",
+      "criterion": "扇出、传输和换层共同消耗端到端预算；DQ/DQS与CK角色按平台规则区分，不让所有信号无条件彼此等长",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "INT-002",
+        "INT-003",
+        "INT-004",
+        "HS-001",
+        "HS-002",
+        "HS-004"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SPRABI1",
+        "VENDOR-TI-SLLA414"
+      ],
+      "basis_refs": [
+        "B-DDR",
+        "B-HS"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-STACKUP",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "S-DDR-FANOUT",
+        "S-DDR-VIA",
+        "P-DDR-DQ",
+        "P-DDR-DQS",
+        "P-DDR-CK"
+      ],
+      "required_inputs": [
+        "实际代际/拓扑/角色分组/封装及过孔延迟"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-CAN-SECTIONS",
+      "owner": "S-CAN-PROTECTED",
+      "scope": "接口区段关系",
+      "criterion": "保护前后路径、保护器件返回和收发器引脚分别核验，同时保持隔离A/B域电气边界",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "INT-006",
+        "INT-007",
+        "INT-008",
+        "INT-009",
+        "ANA-004"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SLLA270",
+        "VENDOR-TI-SLLA284",
+        "VENDOR-ADI-MT095"
+      ],
+      "basis_refs": [
+        "B-CAN",
+        "B-ISO",
+        "B-COUPLING"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-ISO",
+        "R-RETURN",
+        "R-CORRIDOR"
+      ],
+      "dependencies": [
+        "S-CAN-EXTERNAL",
+        "U-CAN",
+        "P-ISO-GNDA",
+        "P-ISO-GNDB"
+      ],
+      "required_inputs": [
+        "保护拓扑/器件/线缆/隔离电源与域定义"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "constraint_id": "LC-MFG-001",
+      "owner": "SYNTH-MIXED-MULTILAYER-001",
+      "scope": "整板制造与测试",
+      "criterion": "逐封装焊盘/钢网/过孔候选必须与同板回流、检测、治具及测试覆盖共同验证",
+      "strength": "recommendation",
+      "strength_scope": "候选要求；实际效力须按器件/产品要求及适用性核验，尚未激活数值或EDA动作",
+      "priority": 2,
+      "rule_ids": [
+        "MFG-002",
+        "MFG-003",
+        "MFG-004",
+        "MFG-006"
+      ],
+      "source_ids": [
+        "VENDOR-TI-SLUA271",
+        "VENDOR-TI-SLMA002"
+      ],
+      "basis_refs": [
+        "B-MFG-QFN",
+        "B-MFG-PAD"
+      ],
+      "applicability_status": "unknown",
+      "target": [
+        "R-DFT",
+        "R-THERMAL",
+        "R-ISO"
+      ],
+      "dependencies": [
+        "U-BUCK",
+        "U-ADC",
+        "U-RF",
+        "U-DDR",
+        "U-ISO",
+        "U-CAN"
+      ],
+      "required_inputs": [
+        "完整BOM/实际封装",
+        "工艺窗口/板厂能力/焊膏",
+        "检测与测试覆盖/治具/试产计划"
+      ],
+      "quantitative_criterion": null,
+      "units": null,
+      "gates": [
+        "G-LOCAL",
+        "G-GRAPH",
+        "G-EDA-READBACK",
+        "G-BOARD-RECHECK"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    }
+  ],
+  "end_to_end_budgets": [
+    {
+      "id": "BUDGET-PWR",
+      "owner": "N-BUCK-OUT",
+      "quantity": "去回供电总压降/温升与工作模式",
+      "limit": null,
+      "units": null,
+      "sections": [
+        "S-BUCK-MAIN"
+      ],
+      "return_path_known": false,
+      "allocations": null,
+      "status": "unknown"
+    },
+    {
+      "id": "BUDGET-DDR",
+      "owner": "N-DDR-DATA",
+      "quantity": "对应角色的端到端时序/偏斜/损耗",
+      "limit": null,
+      "units": null,
+      "sections": [
+        "S-DDR-FANOUT",
+        "S-DDR-ROUTE",
+        "S-DDR-VIA"
+      ],
+      "allocations": null,
+      "status": "unknown"
+    },
+    {
+      "id": "BUDGET-RF",
+      "owner": "N-RF",
+      "quantity": "端到端匹配/损耗",
+      "limit": null,
+      "units": null,
+      "sections": [
+        "S-RF-MATCH",
+        "S-RF-LINE"
+      ],
+      "allocations": null,
+      "status": "unknown"
+    }
+  ],
+  "budget_policy": "预算范围/端点/单位先确定，再分配或联合求解；分段通过不代表总预算通过，不能每段重复使用全部端到端裕量。",
+  "conflicts": [
+    {
+      "conflict_id": "C-001",
+      "participants": [
+        "LC-RF-001",
+        "LC-BUCK-001"
+      ],
+      "resource": "R-THERMAL",
+      "type": "RF禁布/屏蔽环境 vs Buck散热铜/热过孔",
+      "hard_gates": [
+        "RF器件/天线禁布和外壳条件必须明确",
+        "Buck结温/板材热模型必须可审查"
+      ],
+      "candidates": [
+        {
+          "id": "C-001-A",
+          "description": "移动Buck热扩散区避开RF匹配/天线结构",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "热模型",
+            "RF结构/EM仿真"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "P-BUCK-SW",
+            "P-BUCK-EP",
+            "S-RF-MATCH",
+            "S-RF-LINE"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        },
+        {
+          "id": "C-001-B",
+          "description": "改变层叠或散热路径并保留RF参考结构",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "新叠层阻抗/回流检查",
+            "热验证",
+            "RF重调谐"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "P-BUCK-SW",
+            "P-BUCK-EP",
+            "S-RF-MATCH",
+            "S-RF-LINE"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        }
+      ],
+      "selected": null,
+      "decision_reason": "无几何和求解器，不能以面积或距离分数自动选择",
+      "owner": "SYNTH-MIXED-MULTILAYER-001",
+      "review_role": "按项目既有职责分配，未在此示例绑定人员",
+      "affected_objects": [
+        "P-BUCK-SW",
+        "P-BUCK-EP",
+        "S-RF-MATCH",
+        "S-RF-LINE"
+      ],
+      "dependencies": [
+        "R-THERMAL",
+        "P-BUCK-SW",
+        "P-BUCK-EP",
+        "S-RF-MATCH",
+        "S-RF-LINE"
+      ],
+      "recheck_constraints": [
+        "LC-RF-001",
+        "LC-BUCK-001",
+        "LC-BUCK-SW",
+        "LC-BUCK-EP",
+        "LC-RF-SECTIONS",
+        "LC-MFG-001"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "restore_condition": "只有版本化证据证明关联约束和共享资源满足适用判据，才可恢复受影响结果；否则保持unknown或记录真实fail。",
+      "hard_gate_notice": "下列为待确认的适用硬门槛；未获得目标标准/器件条件前，不生成数值或宣称候选可行。"
+    },
+    {
+      "conflict_id": "C-002",
+      "participants": [
+        "LC-ADC-001",
+        "LC-BUCK-001",
+        "LC-DDR-001"
+      ],
+      "resource": "R-PDN",
+      "type": "共享PDN/回流导致ADC受体噪声 vs DDR/Buck动态电流",
+      "hard_gates": [
+        "识别源/路径/受体",
+        "关键电源和参考点噪声预算",
+        "PDN/瞬态模型或实测计划"
+      ],
+      "candidates": [
+        {
+          "id": "C-002-A",
+          "description": "调整分区/去耦和供电入口，保持连续参考并减少共享高阻回流",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "实际铜形",
+            "PDN模型",
+            "ADC噪声测量"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "L-BUCK-INPUT",
+            "S-BUCK-MAIN",
+            "P-ADC-REF",
+            "P-ADC-IN",
+            "P-ADC-DOUT",
+            "P-DDR-DQ"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        },
+        {
+          "id": "C-002-B",
+          "description": "局部独立供电/滤波，但检查滤波共振、压降和返回路径",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "器件稳定性/偏流资料",
+            "阻抗/瞬态模型",
+            "热与制造检查"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "L-BUCK-INPUT",
+            "S-BUCK-MAIN",
+            "P-ADC-REF",
+            "P-ADC-IN",
+            "P-ADC-DOUT",
+            "P-DDR-DQ"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        }
+      ],
+      "selected": null,
+      "decision_reason": "不能用‘模拟地切开’或‘全部共地’的口号替代源路径受体证据",
+      "owner": "SYNTH-MIXED-MULTILAYER-001",
+      "review_role": "按项目既有职责分配，未在此示例绑定人员",
+      "affected_objects": [
+        "L-BUCK-INPUT",
+        "S-BUCK-MAIN",
+        "P-ADC-REF",
+        "P-ADC-IN",
+        "P-ADC-DOUT",
+        "P-DDR-DQ"
+      ],
+      "dependencies": [
+        "R-PDN",
+        "L-BUCK-INPUT",
+        "S-BUCK-MAIN",
+        "P-ADC-REF",
+        "P-ADC-IN",
+        "P-ADC-DOUT",
+        "P-DDR-DQ"
+      ],
+      "recheck_constraints": [
+        "LC-ADC-001",
+        "LC-BUCK-001",
+        "LC-DDR-001",
+        "LC-BUCK-INPUT",
+        "LC-ADC-IN",
+        "LC-ADC-REF",
+        "LC-ADC-DOUT",
+        "LC-DDR-SECTIONS"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "restore_condition": "只有版本化证据证明关联约束和共享资源满足适用判据，才可恢复受影响结果；否则保持unknown或记录真实fail。",
+      "hard_gate_notice": "下列为待确认的适用硬门槛；未获得目标标准/器件条件前，不生成数值或宣称候选可行。"
+    },
+    {
+      "conflict_id": "C-003",
+      "participants": [
+        "LC-DDR-001",
+        "LC-BUCK-001"
+      ],
+      "resource": "R-CORRIDOR",
+      "type": "DDR逃线/参考走廊 vs Buck高di/dt回路和电源瓶颈",
+      "hard_gates": [
+        "DDR拓扑/偏斜/阻抗输入",
+        "Buck回路和热/制造输入"
+      ],
+      "candidates": [
+        {
+          "id": "C-003-A",
+          "description": "先固定DDR走廊和参考层，再移动Buck器件/输入回路",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "器件指南",
+            "完整层叠",
+            "布局重排结果"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "L-BUCK-INPUT",
+            "S-BUCK-MAIN",
+            "S-DDR-FANOUT",
+            "S-DDR-ROUTE",
+            "S-DDR-VIA"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        },
+        {
+          "id": "C-003-B",
+          "description": "先固定Buck高di/dt闭环，再为DDR重选层/过孔和走廊",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "Buck几何/寄生",
+            "DDR通道模型",
+            "制造能力"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "L-BUCK-INPUT",
+            "S-BUCK-MAIN",
+            "S-DDR-FANOUT",
+            "S-DDR-ROUTE",
+            "S-DDR-VIA"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        }
+      ],
+      "selected": null,
+      "decision_reason": "局部线长或铜宽优化不能覆盖器件拓扑和回流硬约束",
+      "owner": "SYNTH-MIXED-MULTILAYER-001",
+      "review_role": "按项目既有职责分配，未在此示例绑定人员",
+      "affected_objects": [
+        "L-BUCK-INPUT",
+        "S-BUCK-MAIN",
+        "S-DDR-FANOUT",
+        "S-DDR-ROUTE",
+        "S-DDR-VIA"
+      ],
+      "dependencies": [
+        "R-CORRIDOR",
+        "L-BUCK-INPUT",
+        "S-BUCK-MAIN",
+        "S-DDR-FANOUT",
+        "S-DDR-ROUTE",
+        "S-DDR-VIA"
+      ],
+      "recheck_constraints": [
+        "LC-DDR-001",
+        "LC-BUCK-001",
+        "LC-BUCK-INPUT",
+        "LC-DDR-SECTIONS",
+        "LC-MFG-001"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "restore_condition": "只有版本化证据证明关联约束和共享资源满足适用判据，才可恢复受影响结果；否则保持unknown或记录真实fail。",
+      "hard_gate_notice": "下列为待确认的适用硬门槛；未获得目标标准/器件条件前，不生成数值或宣称候选可行。"
+    },
+    {
+      "conflict_id": "C-004",
+      "participants": [
+        "LC-CAN-001",
+        "LC-ADC-001",
+        "LC-DDR-001"
+      ],
+      "resource": "R-ISO",
+      "type": "隔离边界/爬电与电气间隙 vs 连续参考/测试返回",
+      "hard_gates": [
+        "地区/产品/污染/海拔等安全输入",
+        "隔离器件和真实边界",
+        "禁止跨域短接"
+      ],
+      "candidates": [
+        {
+          "id": "C-004-A",
+          "description": "保持隔离边界，改走线/连接器/测试方式，避免信号跨越隔离缺口",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "安全标准适用性",
+            "连接器/线缆/机壳方案"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "P-ISO-GNDA",
+            "P-ISO-GNDB",
+            "S-CAN-EXTERNAL",
+            "S-CAN-PROTECTED"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        },
+        {
+          "id": "C-004-B",
+          "description": "如果产品标准允许，设计受控高频耦合结构并验证其安全和EMC影响",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "正式安全判据",
+            "耦合结构模型/测量",
+            "工程授权"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "P-ISO-GNDA",
+            "P-ISO-GNDB",
+            "S-CAN-EXTERNAL",
+            "S-CAN-PROTECTED"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        }
+      ],
+      "selected": null,
+      "decision_reason": "不同参考电位不因回流需要就可以直接桥接；标准和结构未输入",
+      "owner": "SYNTH-MIXED-MULTILAYER-001",
+      "review_role": "按项目既有职责分配，未在此示例绑定人员",
+      "affected_objects": [
+        "P-ISO-GNDA",
+        "P-ISO-GNDB",
+        "S-CAN-EXTERNAL",
+        "S-CAN-PROTECTED"
+      ],
+      "dependencies": [
+        "R-ISO",
+        "P-ISO-GNDA",
+        "P-ISO-GNDB",
+        "S-CAN-EXTERNAL",
+        "S-CAN-PROTECTED"
+      ],
+      "recheck_constraints": [
+        "LC-CAN-001",
+        "LC-ADC-001",
+        "LC-DDR-001",
+        "LC-CAN-SECTIONS",
+        "LC-MFG-001"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "restore_condition": "只有版本化证据证明关联约束和共享资源满足适用判据，才可恢复受影响结果；否则保持unknown或记录真实fail。",
+      "hard_gate_notice": "下列为待确认的适用硬门槛；未获得目标标准/器件条件前，不生成数值或宣称候选可行。"
+    },
+    {
+      "conflict_id": "C-005",
+      "participants": [
+        "LC-RF-001",
+        "LC-DDR-001",
+        "LC-CAN-001"
+      ],
+      "resource": "R-DFT",
+      "type": "测试点/治具空间、RF禁布、DDR通道连续性和隔离边界互斥",
+      "hard_gates": [
+        "产测覆盖和探针负载要求",
+        "RF/DDR通道影响",
+        "隔离测试安全边界"
+      ],
+      "candidates": [
+        {
+          "id": "C-005-A",
+          "description": "选择不侵入关键通道且可达的测试位置，必要时用专用治具/夹具替代探针点",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "DFT故障覆盖",
+            "通道模型",
+            "治具方案"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "S-RF-MATCH",
+            "S-DDR-ROUTE",
+            "S-CAN-PROTECTED",
+            "P-ISO-GNDA",
+            "P-ISO-GNDB"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        },
+        {
+          "id": "C-005-B",
+          "description": "保留测试点但验证其寄生、屏蔽/隔离和生产可达性",
+          "status": "unknown",
+          "planning_state": "planning",
+          "needed_evidence": [
+            "SI/RF模型",
+            "安全检查",
+            "装配/治具验证"
+          ],
+          "feasibility_status": "unknown",
+          "affected_objects": [
+            "S-RF-MATCH",
+            "S-DDR-ROUTE",
+            "S-CAN-PROTECTED",
+            "P-ISO-GNDA",
+            "P-ISO-GNDB"
+          ],
+          "rollback_condition": "证据表明任一适用硬要求失败，或变更使已用模型/工况失效"
+        }
+      ],
+      "selected": null,
+      "decision_reason": "测试点不是免费资源，不能因DRC允许就默认加入或删除",
+      "owner": "SYNTH-MIXED-MULTILAYER-001",
+      "review_role": "按项目既有职责分配，未在此示例绑定人员",
+      "affected_objects": [
+        "S-RF-MATCH",
+        "S-DDR-ROUTE",
+        "S-CAN-PROTECTED",
+        "P-ISO-GNDA",
+        "P-ISO-GNDB"
+      ],
+      "dependencies": [
+        "R-DFT",
+        "S-RF-MATCH",
+        "S-DDR-ROUTE",
+        "S-CAN-PROTECTED",
+        "P-ISO-GNDA",
+        "P-ISO-GNDB"
+      ],
+      "recheck_constraints": [
+        "LC-RF-001",
+        "LC-DDR-001",
+        "LC-CAN-001",
+        "LC-RF-SECTIONS",
+        "LC-DDR-SECTIONS",
+        "LC-CAN-SECTIONS",
+        "LC-MFG-001"
+      ],
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": [],
+      "restore_condition": "只有版本化证据证明关联约束和共享资源满足适用判据，才可恢复受影响结果；否则保持unknown或记录真实fail。",
+      "hard_gate_notice": "下列为待确认的适用硬门槛；未获得目标标准/器件条件前，不生成数值或宣称候选可行。"
+    }
+  ],
+  "coordination_graph": {
+    "representation": "nodes由board/domains/objects/shared_resources/local_constraints中的ID声明",
+    "edges": [
+      {
+        "edge_id": "LC-RF-001-SHARE-1",
+        "type": "shares",
+        "from": "D-RF24",
+        "to": "R-STACKUP",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-RF-001"
+      },
+      {
+        "edge_id": "LC-RF-001-SHARE-2",
+        "type": "shares",
+        "from": "D-RF24",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-RF-001"
+      },
+      {
+        "edge_id": "LC-RF-001-SHARE-3",
+        "type": "shares",
+        "from": "D-RF24",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-RF-001"
+      },
+      {
+        "edge_id": "LC-RF-001-SHARE-4",
+        "type": "shares",
+        "from": "D-RF24",
+        "to": "R-THERMAL",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-RF-001"
+      },
+      {
+        "edge_id": "LC-RF-001-DEP-1",
+        "type": "depends_on",
+        "from": "LC-RF-001",
+        "to": "U-RF",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-RF-001-DEP-2",
+        "type": "depends_on",
+        "from": "LC-RF-001",
+        "to": "S-RF-MATCH",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-RF-001-DEP-3",
+        "type": "depends_on",
+        "from": "LC-RF-001",
+        "to": "S-RF-LINE",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-001-SHARE-1",
+        "type": "shares",
+        "from": "D-BUCK",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-001"
+      },
+      {
+        "edge_id": "LC-BUCK-001-SHARE-2",
+        "type": "shares",
+        "from": "D-BUCK",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-001"
+      },
+      {
+        "edge_id": "LC-BUCK-001-SHARE-3",
+        "type": "shares",
+        "from": "D-BUCK",
+        "to": "R-THERMAL",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-001"
+      },
+      {
+        "edge_id": "LC-BUCK-001-SHARE-4",
+        "type": "shares",
+        "from": "D-BUCK",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-001"
+      },
+      {
+        "edge_id": "LC-BUCK-001-DEP-1",
+        "type": "depends_on",
+        "from": "LC-BUCK-001",
+        "to": "U-BUCK",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-001-DEP-2",
+        "type": "depends_on",
+        "from": "LC-BUCK-001",
+        "to": "L-BUCK-INPUT",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-001-DEP-3",
+        "type": "depends_on",
+        "from": "LC-BUCK-001",
+        "to": "S-BUCK-MAIN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-001-DEP-4",
+        "type": "depends_on",
+        "from": "LC-BUCK-001",
+        "to": "S-BUCK-SENSE",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-001-SHARE-1",
+        "type": "shares",
+        "from": "D-ADC",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-001"
+      },
+      {
+        "edge_id": "LC-ADC-001-SHARE-2",
+        "type": "shares",
+        "from": "D-ADC",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-001"
+      },
+      {
+        "edge_id": "LC-ADC-001-SHARE-3",
+        "type": "shares",
+        "from": "D-ADC",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-001"
+      },
+      {
+        "edge_id": "LC-ADC-001-DEP-1",
+        "type": "depends_on",
+        "from": "LC-ADC-001",
+        "to": "U-ADC",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-001-DEP-2",
+        "type": "depends_on",
+        "from": "LC-ADC-001",
+        "to": "P-ADC-IN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-001-DEP-3",
+        "type": "depends_on",
+        "from": "LC-ADC-001",
+        "to": "P-ADC-REF",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-001-DEP-4",
+        "type": "depends_on",
+        "from": "LC-ADC-001",
+        "to": "P-ADC-CLK",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-001-DEP-5",
+        "type": "depends_on",
+        "from": "LC-ADC-001",
+        "to": "P-ADC-DOUT",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-001-SHARE-1",
+        "type": "shares",
+        "from": "D-DDR",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-DDR-001"
+      },
+      {
+        "edge_id": "LC-DDR-001-SHARE-2",
+        "type": "shares",
+        "from": "D-DDR",
+        "to": "R-STACKUP",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-DDR-001"
+      },
+      {
+        "edge_id": "LC-DDR-001-SHARE-3",
+        "type": "shares",
+        "from": "D-DDR",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-DDR-001"
+      },
+      {
+        "edge_id": "LC-DDR-001-SHARE-4",
+        "type": "shares",
+        "from": "D-DDR",
+        "to": "R-DFT",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-DDR-001"
+      },
+      {
+        "edge_id": "LC-DDR-001-DEP-1",
+        "type": "depends_on",
+        "from": "LC-DDR-001",
+        "to": "U-DDR",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-001-DEP-2",
+        "type": "depends_on",
+        "from": "LC-DDR-001",
+        "to": "P-DDR-DQ",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-001-DEP-3",
+        "type": "depends_on",
+        "from": "LC-DDR-001",
+        "to": "P-DDR-DQS",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-001-DEP-4",
+        "type": "depends_on",
+        "from": "LC-DDR-001",
+        "to": "P-DDR-CK",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-001-DEP-5",
+        "type": "depends_on",
+        "from": "LC-DDR-001",
+        "to": "S-DDR-FANOUT",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-001-DEP-6",
+        "type": "depends_on",
+        "from": "LC-DDR-001",
+        "to": "S-DDR-ROUTE",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-001-DEP-7",
+        "type": "depends_on",
+        "from": "LC-DDR-001",
+        "to": "S-DDR-VIA",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-001-SHARE-1",
+        "type": "shares",
+        "from": "D-CAN-ISO",
+        "to": "R-ISO",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-CAN-001"
+      },
+      {
+        "edge_id": "LC-CAN-001-SHARE-2",
+        "type": "shares",
+        "from": "D-CAN-ISO",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-CAN-001"
+      },
+      {
+        "edge_id": "LC-CAN-001-SHARE-3",
+        "type": "shares",
+        "from": "D-CAN-ISO",
+        "to": "R-DFT",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-CAN-001"
+      },
+      {
+        "edge_id": "LC-CAN-001-SHARE-4",
+        "type": "shares",
+        "from": "D-CAN-ISO",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-CAN-001"
+      },
+      {
+        "edge_id": "LC-CAN-001-DEP-1",
+        "type": "depends_on",
+        "from": "LC-CAN-001",
+        "to": "U-ISO",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-001-DEP-2",
+        "type": "depends_on",
+        "from": "LC-CAN-001",
+        "to": "U-CAN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-001-DEP-3",
+        "type": "depends_on",
+        "from": "LC-CAN-001",
+        "to": "P-ISO-GNDA",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-001-DEP-4",
+        "type": "depends_on",
+        "from": "LC-CAN-001",
+        "to": "P-ISO-GNDB",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-001-DEP-5",
+        "type": "depends_on",
+        "from": "LC-CAN-001",
+        "to": "S-CAN-EXTERNAL",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-001-DEP-6",
+        "type": "depends_on",
+        "from": "LC-CAN-001",
+        "to": "S-CAN-PROTECTED",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-INPUT-SHARE-1",
+        "type": "shares",
+        "from": "L-BUCK-INPUT",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-INPUT"
+      },
+      {
+        "edge_id": "LC-BUCK-INPUT-SHARE-2",
+        "type": "shares",
+        "from": "L-BUCK-INPUT",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-INPUT"
+      },
+      {
+        "edge_id": "LC-BUCK-INPUT-DEP-1",
+        "type": "depends_on",
+        "from": "LC-BUCK-INPUT",
+        "to": "P-BUCK-VIN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-INPUT-DEP-2",
+        "type": "depends_on",
+        "from": "LC-BUCK-INPUT",
+        "to": "P-BUCK-PGND",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-INPUT-DEP-3",
+        "type": "depends_on",
+        "from": "LC-BUCK-INPUT",
+        "to": "R-STACKUP",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-SW-SHARE-1",
+        "type": "shares",
+        "from": "P-BUCK-SW",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-SW"
+      },
+      {
+        "edge_id": "LC-BUCK-SW-SHARE-2",
+        "type": "shares",
+        "from": "P-BUCK-SW",
+        "to": "R-THERMAL",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-SW"
+      },
+      {
+        "edge_id": "LC-BUCK-SW-DEP-1",
+        "type": "depends_on",
+        "from": "LC-BUCK-SW",
+        "to": "U-BUCK",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-SW-DEP-2",
+        "type": "depends_on",
+        "from": "LC-BUCK-SW",
+        "to": "R-STACKUP",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-FB-SHARE-1",
+        "type": "shares",
+        "from": "S-BUCK-SENSE",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-FB"
+      },
+      {
+        "edge_id": "LC-BUCK-FB-SHARE-2",
+        "type": "shares",
+        "from": "S-BUCK-SENSE",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-FB"
+      },
+      {
+        "edge_id": "LC-BUCK-FB-DEP-1",
+        "type": "depends_on",
+        "from": "LC-BUCK-FB",
+        "to": "P-BUCK-FB",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-FB-DEP-2",
+        "type": "depends_on",
+        "from": "LC-BUCK-FB",
+        "to": "S-BUCK-MAIN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-FB-DEP-3",
+        "type": "depends_on",
+        "from": "LC-BUCK-FB",
+        "to": "P-BUCK-SW",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-EP-SHARE-1",
+        "type": "shares",
+        "from": "P-BUCK-EP",
+        "to": "R-THERMAL",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-EP"
+      },
+      {
+        "edge_id": "LC-BUCK-EP-SHARE-2",
+        "type": "shares",
+        "from": "P-BUCK-EP",
+        "to": "R-DFT",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-EP"
+      },
+      {
+        "edge_id": "LC-BUCK-EP-SHARE-3",
+        "type": "shares",
+        "from": "P-BUCK-EP",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-BUCK-EP"
+      },
+      {
+        "edge_id": "LC-BUCK-EP-DEP-1",
+        "type": "depends_on",
+        "from": "LC-BUCK-EP",
+        "to": "U-BUCK",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-BUCK-EP-DEP-2",
+        "type": "depends_on",
+        "from": "LC-BUCK-EP",
+        "to": "R-STACKUP",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-IN-SHARE-1",
+        "type": "shares",
+        "from": "P-ADC-IN",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-IN"
+      },
+      {
+        "edge_id": "LC-ADC-IN-SHARE-2",
+        "type": "shares",
+        "from": "P-ADC-IN",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-IN"
+      },
+      {
+        "edge_id": "LC-ADC-IN-SHARE-3",
+        "type": "shares",
+        "from": "P-ADC-IN",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-IN"
+      },
+      {
+        "edge_id": "LC-ADC-IN-DEP-1",
+        "type": "depends_on",
+        "from": "LC-ADC-IN",
+        "to": "P-ADC-GND",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-REF-SHARE-1",
+        "type": "shares",
+        "from": "P-ADC-REF",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-REF"
+      },
+      {
+        "edge_id": "LC-ADC-REF-SHARE-2",
+        "type": "shares",
+        "from": "P-ADC-REF",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-REF"
+      },
+      {
+        "edge_id": "LC-ADC-REF-SHARE-3",
+        "type": "shares",
+        "from": "P-ADC-REF",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-REF"
+      },
+      {
+        "edge_id": "LC-ADC-REF-DEP-1",
+        "type": "depends_on",
+        "from": "LC-ADC-REF",
+        "to": "P-ADC-GND",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-REF-DEP-2",
+        "type": "depends_on",
+        "from": "LC-ADC-REF",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-CLK-SHARE-1",
+        "type": "shares",
+        "from": "P-ADC-CLK",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-CLK"
+      },
+      {
+        "edge_id": "LC-ADC-CLK-SHARE-2",
+        "type": "shares",
+        "from": "P-ADC-CLK",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-CLK"
+      },
+      {
+        "edge_id": "LC-ADC-CLK-SHARE-3",
+        "type": "shares",
+        "from": "P-ADC-CLK",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-CLK"
+      },
+      {
+        "edge_id": "LC-ADC-CLK-DEP-1",
+        "type": "depends_on",
+        "from": "LC-ADC-CLK",
+        "to": "P-ADC-GND",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-CLK-DEP-2",
+        "type": "depends_on",
+        "from": "LC-ADC-CLK",
+        "to": "P-ADC-IN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-CLK-DEP-3",
+        "type": "depends_on",
+        "from": "LC-ADC-CLK",
+        "to": "P-ADC-REF",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-DOUT-SHARE-1",
+        "type": "shares",
+        "from": "P-ADC-DOUT",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-DOUT"
+      },
+      {
+        "edge_id": "LC-ADC-DOUT-SHARE-2",
+        "type": "shares",
+        "from": "P-ADC-DOUT",
+        "to": "R-PDN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-DOUT"
+      },
+      {
+        "edge_id": "LC-ADC-DOUT-SHARE-3",
+        "type": "shares",
+        "from": "P-ADC-DOUT",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-ADC-DOUT"
+      },
+      {
+        "edge_id": "LC-ADC-DOUT-DEP-1",
+        "type": "depends_on",
+        "from": "LC-ADC-DOUT",
+        "to": "P-ADC-GND",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-DOUT-DEP-2",
+        "type": "depends_on",
+        "from": "LC-ADC-DOUT",
+        "to": "P-ADC-IN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-ADC-DOUT-DEP-3",
+        "type": "depends_on",
+        "from": "LC-ADC-DOUT",
+        "to": "P-ADC-REF",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-RF-SECTIONS-SHARE-1",
+        "type": "shares",
+        "from": "S-RF-MATCH",
+        "to": "R-STACKUP",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-RF-SECTIONS"
+      },
+      {
+        "edge_id": "LC-RF-SECTIONS-SHARE-2",
+        "type": "shares",
+        "from": "S-RF-MATCH",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-RF-SECTIONS"
+      },
+      {
+        "edge_id": "LC-RF-SECTIONS-DEP-1",
+        "type": "depends_on",
+        "from": "LC-RF-SECTIONS",
+        "to": "P-RF-PORT",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-RF-SECTIONS-DEP-2",
+        "type": "depends_on",
+        "from": "LC-RF-SECTIONS",
+        "to": "S-RF-LINE",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-RF-SECTIONS-DEP-3",
+        "type": "depends_on",
+        "from": "LC-RF-SECTIONS",
+        "to": "U-RF",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-SECTIONS-SHARE-1",
+        "type": "shares",
+        "from": "S-DDR-ROUTE",
+        "to": "R-STACKUP",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-DDR-SECTIONS"
+      },
+      {
+        "edge_id": "LC-DDR-SECTIONS-SHARE-2",
+        "type": "shares",
+        "from": "S-DDR-ROUTE",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-DDR-SECTIONS"
+      },
+      {
+        "edge_id": "LC-DDR-SECTIONS-DEP-1",
+        "type": "depends_on",
+        "from": "LC-DDR-SECTIONS",
+        "to": "S-DDR-FANOUT",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-SECTIONS-DEP-2",
+        "type": "depends_on",
+        "from": "LC-DDR-SECTIONS",
+        "to": "S-DDR-VIA",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-SECTIONS-DEP-3",
+        "type": "depends_on",
+        "from": "LC-DDR-SECTIONS",
+        "to": "P-DDR-DQ",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-SECTIONS-DEP-4",
+        "type": "depends_on",
+        "from": "LC-DDR-SECTIONS",
+        "to": "P-DDR-DQS",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-DDR-SECTIONS-DEP-5",
+        "type": "depends_on",
+        "from": "LC-DDR-SECTIONS",
+        "to": "P-DDR-CK",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-SECTIONS-SHARE-1",
+        "type": "shares",
+        "from": "S-CAN-PROTECTED",
+        "to": "R-ISO",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-CAN-SECTIONS"
+      },
+      {
+        "edge_id": "LC-CAN-SECTIONS-SHARE-2",
+        "type": "shares",
+        "from": "S-CAN-PROTECTED",
+        "to": "R-RETURN",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-CAN-SECTIONS"
+      },
+      {
+        "edge_id": "LC-CAN-SECTIONS-SHARE-3",
+        "type": "shares",
+        "from": "S-CAN-PROTECTED",
+        "to": "R-CORRIDOR",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-CAN-SECTIONS"
+      },
+      {
+        "edge_id": "LC-CAN-SECTIONS-DEP-1",
+        "type": "depends_on",
+        "from": "LC-CAN-SECTIONS",
+        "to": "S-CAN-EXTERNAL",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-SECTIONS-DEP-2",
+        "type": "depends_on",
+        "from": "LC-CAN-SECTIONS",
+        "to": "U-CAN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-SECTIONS-DEP-3",
+        "type": "depends_on",
+        "from": "LC-CAN-SECTIONS",
+        "to": "P-ISO-GNDA",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-CAN-SECTIONS-DEP-4",
+        "type": "depends_on",
+        "from": "LC-CAN-SECTIONS",
+        "to": "P-ISO-GNDB",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-MFG-001-SHARE-1",
+        "type": "shares",
+        "from": "SYNTH-MIXED-MULTILAYER-001",
+        "to": "R-DFT",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-MFG-001"
+      },
+      {
+        "edge_id": "LC-MFG-001-SHARE-2",
+        "type": "shares",
+        "from": "SYNTH-MIXED-MULTILAYER-001",
+        "to": "R-THERMAL",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-MFG-001"
+      },
+      {
+        "edge_id": "LC-MFG-001-SHARE-3",
+        "type": "shares",
+        "from": "SYNTH-MIXED-MULTILAYER-001",
+        "to": "R-ISO",
+        "status": "unknown",
+        "evidence": [],
+        "constraint_id": "LC-MFG-001"
+      },
+      {
+        "edge_id": "LC-MFG-001-DEP-1",
+        "type": "depends_on",
+        "from": "LC-MFG-001",
+        "to": "U-BUCK",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-MFG-001-DEP-2",
+        "type": "depends_on",
+        "from": "LC-MFG-001",
+        "to": "U-ADC",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-MFG-001-DEP-3",
+        "type": "depends_on",
+        "from": "LC-MFG-001",
+        "to": "U-RF",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-MFG-001-DEP-4",
+        "type": "depends_on",
+        "from": "LC-MFG-001",
+        "to": "U-DDR",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-MFG-001-DEP-5",
+        "type": "depends_on",
+        "from": "LC-MFG-001",
+        "to": "U-ISO",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "LC-MFG-001-DEP-6",
+        "type": "depends_on",
+        "from": "LC-MFG-001",
+        "to": "U-CAN",
+        "status": "unknown",
+        "evidence": []
+      },
+      {
+        "edge_id": "E-COUPLE-001",
+        "type": "couples",
+        "from": "P-BUCK-SW",
+        "to": "P-ADC-REF",
+        "status": "unknown",
+        "evidence": [],
+        "path": [
+          "R-RETURN",
+          "R-CORRIDOR"
+        ],
+        "hypothesis": "可能的场耦合或共阻抗路径；实际连接、频谱、几何和传递函数未知",
+        "operating_mode": null,
+        "frequency_range": null,
+        "basis_refs": [
+          "B-COUPLING"
+        ]
+      },
+      {
+        "edge_id": "E-COUPLE-002",
+        "type": "couples",
+        "from": "P-DDR-DQ",
+        "to": "P-ADC-IN",
+        "status": "unknown",
+        "evidence": [],
+        "path": [
+          "R-PDN",
+          "R-RETURN"
+        ],
+        "hypothesis": "同时切换可能经共享PDN/返回影响模拟输入；未声称本例存在该连接或噪声",
+        "operating_mode": null,
+        "frequency_range": null,
+        "basis_refs": [
+          "B-ADC-GND",
+          "B-COUPLING"
+        ]
+      },
+      {
+        "edge_id": "E-SEPARATE-001",
+        "type": "must_remain_separate",
+        "from": "P-ISO-GNDA",
+        "to": "P-ISO-GNDB",
+        "status": "unknown",
+        "evidence": [],
+        "reason": "本合成需求声明隔离功能；实际域/隔离边界待原理图绑定。禁止未经电路定义直接短接；任何允许的受控耦合另按产品与安全要求证明。",
+        "applicability_status": "unknown",
+        "basis_refs": [
+          "B-ISO"
+        ]
+      },
+      {
+        "edge_id": "E-C-001",
+        "type": "conflicts_with",
+        "from": "LC-RF-001",
+        "to": "LC-BUCK-001",
+        "status": "unknown",
+        "evidence": [],
+        "conflict_id": "C-001",
+        "resource": "R-THERMAL",
+        "hypothesis": "资源争用候选，尚未证明几何互斥或违反判据"
+      },
+      {
+        "edge_id": "E-C-002",
+        "type": "conflicts_with",
+        "from": "LC-ADC-001",
+        "to": "LC-BUCK-001",
+        "status": "unknown",
+        "evidence": [],
+        "conflict_id": "C-002",
+        "resource": "R-PDN",
+        "hypothesis": "资源争用候选，尚未证明几何互斥或违反判据"
+      },
+      {
+        "edge_id": "E-C-003",
+        "type": "conflicts_with",
+        "from": "LC-DDR-001",
+        "to": "LC-BUCK-001",
+        "status": "unknown",
+        "evidence": [],
+        "conflict_id": "C-003",
+        "resource": "R-CORRIDOR",
+        "hypothesis": "资源争用候选，尚未证明几何互斥或违反判据"
+      },
+      {
+        "edge_id": "E-C-004",
+        "type": "conflicts_with",
+        "from": "LC-CAN-001",
+        "to": "LC-ADC-001",
+        "status": "unknown",
+        "evidence": [],
+        "conflict_id": "C-004",
+        "resource": "R-ISO",
+        "hypothesis": "资源争用候选，尚未证明几何互斥或违反判据"
+      },
+      {
+        "edge_id": "E-C-005",
+        "type": "conflicts_with",
+        "from": "LC-RF-001",
+        "to": "LC-DDR-001",
+        "status": "unknown",
+        "evidence": [],
+        "conflict_id": "C-005",
+        "resource": "R-DFT",
+        "hypothesis": "资源争用候选，尚未证明几何互斥或违反判据"
+      }
+    ],
+    "invalidation_policy": "修改节点后沿depends_on反向传播至依赖检查，再沿shares/couples/conflicts_with扩展共享影响；must_remain_separate持续参与复核。边覆盖不完整时扩大复查或保持unknown。",
+    "reuse_policy": "仅当差异证据证明输入、模式、模型和依赖不变时复用原版本报告；不得改写报告版本冒充重测。"
+  },
+  "coordination_gates": [
+    {
+      "id": "G-LOCAL",
+      "description": "每个真实器件/引脚角色/网络区段/回路的候选已核验适用性、出处与依赖；适用硬要求需有证据，登记本身不算通过",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "G-GRAPH",
+      "description": "局部约束已映射到共享资源和源-路径-受体边，冲突表覆盖硬要求",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "G-SELECT",
+      "description": "候选方案按硬门槛筛选，剩余差异有模型/仿真/制造/测试证据；未解决项保留unknown",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "G-EDA-READBACK",
+      "description": "EDA回读的层叠、铜形、过孔、规则和铺铜绑定到新的board_revision",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    },
+    {
+      "id": "G-BOARD-RECHECK",
+      "description": "完整新板快照复查局部与共享资源，包括同时工作模式；仅在差异证据成立时复用未受影响的原版本结果",
+      "status": "unknown",
+      "planning_state": "planning",
+      "evidence": []
+    }
+  ],
+  "handoff": {
+    "to_eda": false,
+    "selected_candidates": [],
+    "board_revision": null,
+    "status": "unknown",
+    "reason_code": "needs_input",
+    "evidence": [],
+    "missing_inputs": [
+      "实际器件与引脚/网络绑定",
+      "原理图/PCB/层叠/机械版本",
+      "工作模式/预算/产品与制造要求",
+      "候选取舍及验证证据"
+    ]
+  },
+  "whole_board_conclusion": {
+    "status": "unknown",
+    "planning_state": "planning",
+    "statement": "局部策略尚未综合为整板通过；在没有真实层叠、几何、器件资料、制造能力和模型/测量证据前，只能输出冲突图与待验证计划。",
+    "evidence": []
+  },
+  "review_readback": {
+    "synthetic_only": true,
+    "fabricated_measurements": false,
+    "fabricated_dimensions": false,
+    "validation_scope": "仓库验证器、JSON解析、ID/交叉引用和UTF-8回读检查不代表PCB电气/EMC/制造验证"
+  }
+}

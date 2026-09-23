@@ -1,0 +1,444 @@
+[
+  {
+    "id": "PAPER-HUBING-1995-POWERBUS",
+    "kind": "paper",
+    "title": "Power bus decoupling on multilayer printed circuit boards",
+    "authors": [
+      "T.H. Hubing",
+      "J.L. Drewniak",
+      "T.P. Van Doren",
+      "D.M. Hockanson"
+    ],
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "year": 1995,
+    "edition_or_revision": "IEEE Transactions on Electromagnetic Compatibility 37(2), 155-166 (1995 original)",
+    "url": "https://doi.org/10.1109/15.385878",
+    "doi": "10.1109/15.385878",
+    "isbn": null,
+    "access_status": "metadata_verified",
+    "reviewed_sections": [],
+    "supports": [],
+    "limitations": "本轮仅核验书目；不可把二手引用或2020年同名重刊当作已读1995年全文。未由此条目生成可执行规则。",
+    "checked_on": "2026-09-23",
+    "evidence": "Crossref 出版社登记元数据核验题名、作者、年份、卷期页码及 DOI；IEEE Transactions on Electromagnetic Compatibility 37(2), 155-166 (1995 original)。未读取该论文正文。",
+    "publication_type": "journal-article"
+  },
+  {
+    "id": "PAPER-FAN-2001-SMT-PLACEMENT",
+    "kind": "paper",
+    "title": "Quantifying SMT decoupling capacitor placement in dc power-bus design for multilayer PCBs",
+    "authors": [
+      "Jun Fan",
+      "J.L. Drewniak",
+      "J.L. Knighten",
+      "N.W. Smith",
+      "A. Orlandi",
+      "T.P. Van Doren",
+      "T.H. Hubing",
+      "R.E. DuBroff"
+    ],
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "year": 2001,
+    "edition_or_revision": "IEEE Transactions on Electromagnetic Compatibility 43(4), 588-599",
+    "url": "https://doi.org/10.1109/15.974639",
+    "doi": "10.1109/15.974639",
+    "isbn": null,
+    "access_status": "metadata_verified",
+    "reviewed_sections": [],
+    "supports": [],
+    "limitations": "本轮未读取正文、实验布局或去耦距离数据；不得据题名生成固定距离、过孔数或频率规则。",
+    "checked_on": "2026-09-23",
+    "evidence": "Crossref 出版社登记元数据核验题名、作者、年份、卷期页码及 DOI；IEEE Transactions on Electromagnetic Compatibility 43(4), 588-599。未读取该论文正文。",
+    "publication_type": "journal-article"
+  },
+  {
+    "id": "PAPER-HOCKANSON-1996-COMMONMODE",
+    "kind": "paper",
+    "title": "Investigation of fundamental EMI source mechanisms driving common-mode radiation from printed circuit boards with attached cables",
+    "authors": [
+      "D.M. Hockanson",
+      "J.L. Drewniak",
+      "T.H. Hubing",
+      "T.P. Van Doren",
+      "Fei Sha",
+      "M.J. Wilhelm"
+    ],
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "year": 1996,
+    "edition_or_revision": "IEEE Transactions on Electromagnetic Compatibility 38(4), 557-566",
+    "url": "https://doi.org/10.1109/15.544310",
+    "doi": "10.1109/15.544310",
+    "isbn": null,
+    "access_status": "metadata_verified",
+    "reviewed_sections": [],
+    "supports": [],
+    "limitations": "本轮仅核验原始论文元数据；共模规则实际依据已读JEES论文及CVEL报告，不能冒充已复核本论文实验。",
+    "checked_on": "2026-09-23",
+    "evidence": "Crossref 出版社登记元数据核验题名、作者、年份、卷期页码及 DOI；IEEE Transactions on Electromagnetic Compatibility 38(4), 557-566。未读取该论文正文。",
+    "publication_type": "journal-article"
+  },
+  {
+    "id": "PAPER-XU-2001-EMBEDDED",
+    "kind": "paper",
+    "title": "Modeling Printed Circuit Boards with Embedded Decoupling Capacitance",
+    "authors": [
+      "Minjia Xu",
+      "T. Hubing",
+      "J. Drewniak",
+      "T. Van Doren",
+      "R. DuBroff"
+    ],
+    "publisher": "IEEE",
+    "year": 2001,
+    "edition_or_revision": "14th International Zurich Symposium and Technical Exposition on Electromagnetic Compatibility, 2001; author-hosted six-page copy",
+    "url": "http://cecas.clemson.edu/cvel/pdf/zur01-96O2.pdf",
+    "doi": "10.23919/emc.2001.10792021",
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "Sections I-VII, PDF pp.1-6",
+      "Section IV.1-IV.2 and Figs.4-7: measured test-board impedances",
+      "Section V, Table II: material/geometry dependent quality factors",
+      "Visual inspection of PDF p.4 graphs and test conditions"
+    ],
+    "supports": [
+      "RES-003",
+      "RES-004"
+    ],
+    "limitations": "2001年嵌入式电容材料与连接结构研究；材料、安装电感及频率边界不代表现代所有MLCC或PCB。图6图注的500-mm/100-mm与正文微米单位不一致，采用正文条件并保留此印刷/字体问题；不从PDF提取乱码实现公式。",
+    "checked_on": "2026-09-23",
+    "evidence": "正文IV.1记录7.6 cm × 5 cm、500 µm FR-4层间距；IV.2比较100 µm及约6 µm材料；结论说明离散去耦失效频率取决于连接电感与平面阻抗。",
+    "publication_type": "proceedings-article"
+  },
+  {
+    "id": "PAPER-HUBING-2013-PERFORMANCE",
+    "kind": "paper",
+    "title": "Performance-Based EMC Design Using a Maximum Radiated Emissions Calculator",
+    "authors": [
+      "Todd H. Hubing"
+    ],
+    "publisher": "Korean Institute of Electromagnetic Engineering and Science",
+    "year": 2013,
+    "edition_or_revision": "Journal of Electromagnetic Engineering and Science 13(4), 199-207; invited paper",
+    "url": "https://jees.kr/journal/view.php?doi=10.5515/JKIEES.2013.13.4.199",
+    "doi": "10.5515/jkiees.2013.13.4.199",
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "Sections I-IV, pp.199-206; references p.207",
+      "Section II.1-II.4: requirements, bandwidth, current paths, radiation mechanisms",
+      "Section III and Figs.5-9: 32 MHz example and one/two-cable configurations",
+      "Visual inspection of p.204, Fig.6 I/O geometry and Fig.7 coupling mechanisms"
+    ],
+    "supports": [
+      "RES-001",
+      "RES-002"
+    ],
+    "limitations": "方法论文和计算示例，不是本仓库新设计的实测证据。文中历史FCC/CISPR限值和20 kΩ/500 Ω例子不能成为当前产品通用规则；作者的条件性保证不能在缺少全电路、耦合路径和源模型时沿用。",
+    "checked_on": "2026-09-23",
+    "evidence": "pp.200-202要求先确定EMC要求、控制过渡时间并追踪往返电流；pp.203-205固定32 MHz/6 ns/10 cm走线条件，对比一条和两条外接线缆的计算结果。",
+    "publication_type": "journal-article",
+    "full_text_url": "http://ocean.kisti.re.kr/downfile/crosscheck/kees/JAKO201303537265057.pdf"
+  },
+  {
+    "id": "PAPER-HE-2011-HEATSINK",
+    "kind": "paper",
+    "title": "Estimating Radiated Emissions from Heatsinks on Printed Circuit Boards above 1 GHz",
+    "authors": [
+      "X. He",
+      "T. Hubing"
+    ],
+    "publisher": "2011 Asia Pacific EMC Symposium proceedings; author-hosted copy: Clemson University",
+    "year": 2011,
+    "edition_or_revision": "APEMC 2011, Jeju, Korea, May 2011; four-page author-hosted copy",
+    "url": "http://cecas.clemson.edu/cvel/pdf/APEMC2011_Hubing-Heatsink.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "publication_type": "conference-paper",
+    "reviewed_sections": [
+      "Sections I-V, PDF pp.1-4",
+      "Section IV and Figs.2-5: full-wave simulation comparisons",
+      "Section V: validation and enclosure/cable limitations",
+      "Visual inspection of PDF p.3"
+    ],
+    "supports": [
+      "RES-005"
+    ],
+    "limitations": "正文与作者机构出版目录核验；独立会议出版商及DOI未核实，不能填猜测值。该文是模型与仿真比较，作者明确仍需进一步验证；未提供通用产品实测合规证明。",
+    "checked_on": "2026-09-23",
+    "evidence": "Section IV比较90 mm × 64 mm、0/10/40/100 mm高度散热器；Section V指出仍需进一步发展与验证，并区分直接辐射、机壳与线缆耦合。"
+  },
+  {
+    "id": "PAPER-CVEL-2013-DM",
+    "kind": "technical_report",
+    "title": "Maximum Radiated Emission Calculator: Differential-Mode EMI Algorithm",
+    "authors": [
+      "Chentian Zhu",
+      "Todd Hubing"
+    ],
+    "publisher": "Clemson University, Clemson Vehicular Electronics Laboratory",
+    "year": 2013,
+    "edition_or_revision": "Technical Report CVEL-13-052; October 12, 2013",
+    "url": "http://cecas.clemson.edu/cvel/Reports/CVEL-13-052.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "Sections 1-3, pp.2-4",
+      "Appendix code read, not executed or independently validated"
+    ],
+    "supports": [
+      "RES-006"
+    ],
+    "limitations": "机构技术报告，未核验同行评审。实现支持至500 MHz、3 m观察距离；小电尺寸、宽参考平面及走线长度限制必须保留。源代码仅阅读，不代表实现或验证了算法。",
+    "checked_on": "2026-09-23",
+    "evidence": "p.3将长度计算封顶于λ/6以处理均匀电流假设，p.4列出模型前提并要求超过适用范围时使用其他模型。",
+    "publication_type": "institutional-technical-report"
+  },
+  {
+    "id": "PAPER-CVEL-2013-POWERBUS",
+    "kind": "technical_report",
+    "title": "Maximum Radiated Emission Calculator: Power Bus EMI Algorithm",
+    "authors": [
+      "Chentian Zhu",
+      "Todd Hubing"
+    ],
+    "publisher": "Clemson University, Clemson Vehicular Electronics Laboratory",
+    "year": 2013,
+    "edition_or_revision": "Technical Report CVEL-13-053; October 12, 2013",
+    "url": "http://cecas.clemson.edu/cvel/Reports/CVEL-13-053.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "Sections 1-3, pp.2-5",
+      "Section 2.3 assumptions",
+      "Appendix code read, not executed or independently validated"
+    ],
+    "supports": [
+      "RES-007"
+    ],
+    "limitations": "机构技术报告，未核验同行评审。近矩形、间距电小的双平面自由空间模型，不能用于任意开槽/切割平面，且不包含机壳/线缆近场耦合。",
+    "checked_on": "2026-09-23",
+    "evidence": "pp.4-5区分组件电流估算与板边电压输入，并列出平面形状、组件分布和自由空间假设。",
+    "publication_type": "institutional-technical-report"
+  },
+  {
+    "id": "PAPER-CVEL-2013-CM",
+    "kind": "technical_report",
+    "title": "Maximum Radiated Emission Calculator: Common-mode EMI Algorithm",
+    "authors": [
+      "Chentian Zhu",
+      "Todd Hubing"
+    ],
+    "publisher": "Clemson University, Clemson Vehicular Electronics Laboratory",
+    "year": 2013,
+    "edition_or_revision": "Technical Report CVEL-13-051; December 23, 2013",
+    "url": "http://cecas.clemson.edu/cvel/Reports/CVEL-13-051.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "Introduction p.3",
+      "Section 2.1, pp.4-7: source decomposition",
+      "Section 2.3 and Conclusion p.13"
+    ],
+    "supports": [
+      "RES-008"
+    ],
+    "limitations": "机构技术报告，未核验同行评审。本轮未逐项复核pp.8-13全部多线缆几何分支，也未审计或运行附录代码；不得把此条目标为完整算法验证。",
+    "checked_on": "2026-09-23",
+    "evidence": "p.13要求微带宽度及介质厚度相对波长很小，且源端/负载端信号同相；结论限定电短走线。",
+    "publication_type": "institutional-technical-report"
+  },
+  {
+    "id": "PAPER-HUANG-2010-GUARDVIAS",
+    "kind": "paper",
+    "title": "SUPPRESSION OF CROSSTALK USING SERPENTINE GUARD TRACE VIAS",
+    "authors": [
+      "Wen-Tzeng Huang",
+      "Chi-Hao Lu",
+      "Ding-Bing Lin"
+    ],
+    "publisher": "The Electromagnetics Academy",
+    "year": 2010,
+    "edition_or_revision": "Progress In Electromagnetics Research 109, 37-61",
+    "url": "https://www.jpier.org/PIER/pier.php?paper=10090504",
+    "doi": "10.2528/pier10090504",
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "Abstract and Sections 1-3.2, printed pp.37-44 (PDF pp.1-8)",
+      "Section 3.5, selected resonance discussion and Fig.8, printed pp.52-53 (PDF pp.16-17)",
+      "Section 4 and Section 5, printed pp.53-58 (PDF pp.17-22); Tables 6-8 and Figs.9-13",
+      "Visual inspection of printed p.54 (PDF p.18) parameter table and performance metric"
+    ],
+    "supports": [
+      "RES-009"
+    ],
+    "limitations": "已选读机制和试板实验，未完整阅读Sections 3.3-3.5全部推导及所有参考文献，故不标全文已读。正文Section 3.2损耗因子0.035与Table 6的0.35不一致；作者频域改进值为频带内dB数值平均，不是最差频点保证。本轮不复用其数值算法。",
+    "checked_on": "2026-09-23",
+    "evidence": "Minghsin University/NTUT作者的公开原文记录FR-4、7 mil介质厚度、12 mil信号线、4000 mil耦合长度；Section 4用E8362B与试板比较3W、SGT、SGTV，时域激励为3.3 V、100 ps。",
+    "publication_type": "journal-article",
+    "full_text_url": "https://www.jpier.org/0journal/work_pdf/10090504.pdf"
+  },
+  {
+    "id": "PAPER-PARK-2022-SLOTTED-GROUND",
+    "kind": "paper",
+    "title": "Analytic Radiation Models of a Microstrip Line on a Slotted Ground Plane",
+    "authors": [
+      "Hyun Ho Park",
+      "Jinho Lim",
+      "Younggi Hong"
+    ],
+    "publisher": "Korean Institute of Electromagnetic Engineering and Science",
+    "year": 2022,
+    "edition_or_revision": "Journal of Electromagnetic Engineering and Science 22(3), 389-391; letter",
+    "url": "https://www.jees.kr/journal/view.php?doi=10.26866/jees.2022.3.l.5",
+    "doi": "10.26866/jees.2022.3.l.5",
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "Complete text, Sections I-IV and references, pp.389-391",
+      "Section III: numerical verification conditions",
+      "Visual inspection of p.390, Figs.1-2 and Section III"
+    ],
+    "supports": [
+      "RES-010"
+    ],
+    "limitations": "University of Suwon、UNIST、Sungkyunkwan University联合研究；本文验证为解析模型与CST数值比较，未提供实物辐射测量。限定所分析微带-长槽及匹配终端模型，不能外推为任意跨分割电源/地结构的精确解。",
+    "checked_on": "2026-09-23",
+    "evidence": "Section III列出200 × 150 mm板、125 mm走线、1 mm介质与线宽、Dk=4.3、1 A激励，并比较20 × 1 mm与80 × 4 mm地槽的辐射。",
+    "publication_type": "journal-article",
+    "full_text_url": "https://www.jees.kr/upload/pdf/jees-2022-3-l-5.pdf"
+  },
+  {
+    "id": "PAPER-YU-2022-OFFSET-MESH",
+    "kind": "paper",
+    "title": "Improving Signal Integrity by Reducing Mode Conversion in Differential Pairs on a Meshed Ground in Flexible Printed Circuit Boards",
+    "authors": [
+      "Seulgi Yu",
+      "Dong-Gun Kam"
+    ],
+    "publisher": "Korean Institute of Electromagnetic Engineering and Science",
+    "year": 2022,
+    "edition_or_revision": "Journal of Electromagnetic Engineering and Science 22(3), 229-235",
+    "url": "https://www.jees.kr/journal/view.php?doi=10.26866/jees.2022.3.r.81",
+    "doi": "10.26866/jees.2022.3.r.81",
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "Complete text, Sections I-IV, references and biographies, pp.229-235",
+      "Section II mesh geometry",
+      "Section III mixed-mode S-parameters and simulated eyes",
+      "Visual inspection of p.231, Fig.3 and geometry"
+    ],
+    "supports": [
+      "RES-011"
+    ],
+    "limitations": "Ajou University研究；结果来自HFSS/CST/ADS仿真，不是本文实物测量。双网格参考结构与单网格FPC不同；文中USB/MIPI旧版本限值不得直接替代当前接口规范。图6的上升时间记载不用于本仓库参数规则。",
+    "checked_on": "2026-09-23",
+    "evidence": "Section II固定45°交角、1000 µm方孔、150 µm网格间隔/线宽、200 µm线距、25 mm长度；Section III比较双层错位网格的阻抗变化、模式转换和5 Gbps模拟眼图。",
+    "publication_type": "journal-article",
+    "full_text_url": "https://www.jees.kr/upload/pdf/jees-2022-3-r-81.pdf"
+  },
+  {
+    "id": "PAPER-WANG-2020-ROTATED-MESH",
+    "kind": "paper",
+    "title": "Mitigating differential skew by rotating meshed ground for high-density layout in flexible printed circuits",
+    "authors": [
+      "Chenyu Wang",
+      "Kengo Iokibe",
+      "Yoshitaka Toyota"
+    ],
+    "publisher": "Institute of Electronics, Information and Communications Engineers (IEICE)",
+    "year": 2020,
+    "edition_or_revision": "IEICE Electronics Express 17(10), article 20200101, pp.1-6",
+    "url": "https://www.jstage.jst.go.jp/article/elex/17/10/17_17.20200101/_article",
+    "doi": "10.1587/elex.17.20200101",
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "Complete text, Sections 1-5 and references, PDF pp.1-6",
+      "Section 2 and Table I: FPC boards and VNA measurement method",
+      "Sections 3-4: skew, impedance and bend-board results",
+      "Visual inspection of p.2, Table I and Figs.2-3"
+    ],
+    "supports": [
+      "RES-012"
+    ],
+    "limitations": "Okayama University的特定单网格FPC试板实测；30°结论取决于网格、走线、层叠与位置条件，不能推广成所有PCB角度规则。Section 4中FPC2优于FPC2的文字存在自我比较笔误，本条不引用该句的量化结论。",
+    "checked_on": "2026-09-23",
+    "evidence": "Section 2测试0/10/22.5/26.5/30/40/45°及9.6/30/60 mm长度；4端口VNA与GSGSG探针测量0.1-20 GHz，另制37 mm弯折线路板。Table I给出聚酰亚胺/胶层/铜厚。",
+    "publication_type": "journal-article",
+    "full_text_url": "https://www.jstage.jst.go.jp/article/elex/17/10/17_17.20200101/_pdf"
+  },
+  {
+    "id": "PAPER-YAMANAGA-2010-CERAMIC-MODEL",
+    "kind": "paper",
+    "title": "A Universal Equivalent Circuit Model for Ceramic Capacitors",
+    "authors": [
+      "Koh YAMANAGA",
+      "Shuhei AMAKAWA",
+      "Kazuya MASU",
+      "Takashi SATO"
+    ],
+    "publisher": "Institute of Electronics, Information and Communications Engineers (IEICE)",
+    "year": 2010,
+    "edition_or_revision": "IEICE Transactions on Electronics E93-C(3), 347-354",
+    "url": "https://www.jstage.jst.go.jp/article/transele/E93.C/3/E93.C_3_347/_article",
+    "doi": "10.1587/transele.e93.c.347",
+    "isbn": null,
+    "access_status": "metadata_verified",
+    "reviewed_sections": [],
+    "supports": [],
+    "limitations": "已核验Tokyo Institute of Technology与Kyoto University作者及期刊元数据；未读取正文，不能声称已审查其等效电路、频率范围或拟合误差。",
+    "checked_on": "2026-09-23",
+    "evidence": "IEICE登记题名、四名作者、机构、E93-C(3)与347-354页；DOI为10.1587/transele.e93.c.347。",
+    "publication_type": "journal-article"
+  },
+  {
+    "id": "PAPER-DOGRUOZ-2009-TRACE-HEATING",
+    "kind": "paper",
+    "title": "Effects of Trace Layers and Joule Heating on the Temperature Distribution of Printed Circuit Boards: A Computational Study",
+    "authors": [
+      "M. Baris Dogruoz",
+      "Manoj K. Nagulapally"
+    ],
+    "publisher": "ASME International",
+    "year": 2009,
+    "edition_or_revision": "Journal of Thermal Science and Engineering Applications 1(2)",
+    "url": "https://doi.org/10.1115/1.4000286",
+    "doi": "10.1115/1.4000286",
+    "isbn": null,
+    "access_status": "metadata_verified",
+    "reviewed_sections": [],
+    "supports": [],
+    "limitations": "ASME出版社元数据核验，作者为Ansys ICE Division研究人员；未获取/读取完整正文，不据摘要或标题推导线宽、温升或边界换热规则。",
+    "checked_on": "2026-09-23",
+    "evidence": "ASME登记题名明确为计算研究，作者M. Baris Dogruoz与Manoj K. Nagulapally，2009年1卷2期；DOI为10.1115/1.4000286。",
+    "publication_type": "journal-article"
+  },
+  {
+    "id": "PAPER-ADAM-2004-CURRENT-TEMPERATURE",
+    "kind": "paper",
+    "title": "New correlations between electrical current and temperature rise in PCB traces",
+    "authors": [
+      "J. Adam"
+    ],
+    "publisher": "IEEE",
+    "year": 2004,
+    "edition_or_revision": "Twentieth Annual IEEE Semiconductor Thermal Measurement and Management Symposium, pp.292-299",
+    "url": "https://doi.org/10.1109/stherm.2004.1291337",
+    "doi": "10.1109/stherm.2004.1291337",
+    "isbn": null,
+    "access_status": "metadata_verified",
+    "reviewed_sections": [],
+    "supports": [],
+    "limitations": "仅核验题名、作者、会议、页码及DOI。Crossref issued年份缺失，2004由会议编号STHERM-04及OpenAlex交叉核验。未读取正文，不替代IPC-2152或真实板层/环境条件下的热分析。",
+    "checked_on": "2026-09-23",
+    "evidence": "IEEE登记题名New correlations between electrical current and temperature rise in PCB traces、J. Adam及292-299页，DOI为10.1109/stherm.2004.1291337。",
+    "publication_type": "proceedings-article"
+  }
+]

@@ -1,0 +1,6 @@
+interface:
+  display_name: "PCB Routing Knowledge · 布线工程知识"
+  short_description: "以可追溯资料生成 PCB 布线约束，检查电源、回流、信号完整性与证据"
+  default_prompt: "使用 $pcb-routing-knowledge 分析当前 PCB，生成有来源依据的布局布线约束并审查结果。"
+policy:
+  allow_implicit_invocation: true

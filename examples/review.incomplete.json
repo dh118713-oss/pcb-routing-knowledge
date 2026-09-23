@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "board_revision": "synthetic-demo-r1",
+  "checks": [
+    {"id": "vcc-width", "status": "fail", "rationale": "合成输入中VCC有一段0.3 mm，低于该示例0.5 mm要求。", "evidence": [{"artifact": "examples/README.md", "locator": "合成观测：segment-17", "board_revision": "synthetic-demo-r1"}]},
+    {"id": "return-path", "status": "unknown", "rationale": "示例没有提供参考平面几何，不能宣称检查通过。", "evidence": []}
+  ]
+}

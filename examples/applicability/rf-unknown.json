@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "target_id": "unknown-radio",
+  "facts": {
+    "board_revision": {
+      "value": "synthetic-unknown-r1",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: unknown-radio / board_revision"
+      }
+    },
+    "net_role": {
+      "value": "rf_feed",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: unknown-radio / net_role"
+      }
+    },
+    "frequency_hz": {
+      "value": {
+        "min": 2400000000,
+        "max": 2480000000,
+        "unit": "Hz"
+      },
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: unknown-radio / frequency_hz"
+      }
+    }
+  }
+}

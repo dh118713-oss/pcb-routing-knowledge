@@ -1,0 +1,50 @@
+[
+  {
+    "id": "DATASHEET-TI-CC2652R",
+    "kind": "datasheet",
+    "title": "CC2652R SimpleLink Wireless MCU datasheet",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2023,
+    "edition_or_revision": "SWRS207J; revised November 2023",
+    "url": "https://www.ti.com/lit/ds/symlink/cc2652r.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-2 and p.11 section 8.9"
+    ],
+    "supports": [
+      "RF-001"
+    ],
+    "limitations": "Only device identity, listed protocols/packages and RF frequency specifications read. Not the entire datasheet or a matching-network/antenna design. Silicon frequency range does not authorize radio operation in any jurisdiction or prove protocol certification.",
+    "checked_on": "2026-09-23",
+    "evidence": "Official TI PDF text inspected; rendered p.11 section 8.9 visually checked: 2360–2500 MHz silicon RF range. Text on pp.1-2 gives a 2400–2480 MHz application example and RGZ VQFN48 package. Used only for source applicability screening, not trace geometry."
+  },
+  {
+    "id": "DATASHEET-TI-CC1310",
+    "kind": "datasheet",
+    "title": "CC1310 SimpleLink Wireless MCU datasheet",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2018,
+    "edition_or_revision": "SWRS181D; revised July 2018",
+    "url": "https://www.ti.com/lit/ds/symlink/cc1310.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-2 and p.16 section 5.5"
+    ],
+    "supports": [
+      "RF-001"
+    ],
+    "limitations": "Only device identity, listed protocols/packages and RF frequency specifications read. Not the entire datasheet or a matching-network/antenna design. Silicon frequency range does not authorize radio operation in any jurisdiction or prove protocol certification.",
+    "checked_on": "2026-09-23",
+    "evidence": "Official TI PDF text inspected; rendered p.16 section 5.5 visually checked: multiple sub-1GHz ranges, including 861–1054 MHz. Text on pp.1-2 lists RGZ VQFN48, RHB VQFN32 and RSM VQFN32 packages. Used only for source applicability screening, not trace geometry."
+  }
+]

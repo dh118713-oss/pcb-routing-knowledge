@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCB knowledge source record",
+  "type": "object",
+  "required": ["id", "kind", "title", "authors", "publisher", "year", "edition_or_revision", "url", "doi", "isbn", "access_status", "reviewed_sections", "supports", "limitations", "checked_on", "evidence"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]+$"},
+    "kind": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "authors": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "publisher": {"type": "string", "minLength": 1},
+    "year": {"type": ["integer", "null"], "minimum": 1900, "maximum": 2100},
+    "edition_or_revision": {"type": "string", "minLength": 1},
+    "url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "doi": {"type": ["string", "null"]},
+    "isbn": {"type": ["string", "null"]},
+    "access_status": {"enum": ["content_reviewed", "partial_content_reviewed", "metadata_verified", "unverified"]},
+    "reviewed_sections": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "supports": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]+$"}},
+    "limitations": {"type": "string", "minLength": 1},
+    "checked_on": {"type": "string", "format": "date"},
+    "evidence": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {"if": {"properties": {"access_status": {"enum": ["metadata_verified", "unverified"]}}}, "then": {"properties": {"supports": {"maxItems": 0}}}}
+  ]
+}

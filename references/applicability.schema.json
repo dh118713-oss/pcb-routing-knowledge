@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCB applicability profile and candidate catalog",
+  "description": "A profile records facts for exactly one target. A catalog records candidate conditions, not engineering approval or routing values. Validate either document with this schema, or select #/$defs/profile or #/$defs/catalog. Runtime validation also rejects non-finite numbers, boolean/float schema versions, duplicate entry IDs and reversed Hz ranges.",
+  "oneOf": [
+    {"$ref": "#/$defs/profile"},
+    {"$ref": "#/$defs/catalog"}
+  ],
+  "$defs": {
+    "nonemptyString": {"type": "string", "pattern": "\\S"},
+    "scalar": {"type": ["string", "number", "boolean"]},
+    "scalarArray": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/scalar"}
+    },
+    "frequencyRange": {
+      "type": "object",
+      "required": ["min", "max", "unit"],
+      "properties": {
+        "min": {"type": "number", "minimum": 0},
+        "max": {"type": "number", "minimum": 0},
+        "unit": {"const": "Hz"}
+      },
+      "additionalProperties": false,
+      "description": "Inclusive nonnegative frequency range in Hz. The runtime additionally requires min <= max and finite numbers within its supported range."
+    },
+    "value": {
+      "oneOf": [
+        {"$ref": "#/$defs/scalar"},
+        {"$ref": "#/$defs/scalarArray"},
+        {"$ref": "#/$defs/frequencyRange"},
+        {"type": "null"}
+      ]
+    },
+    "provenance": {
+      "type": ["object", "null"],
+      "properties": {
+        "artifact": {"type": ["string", "null"]},
+        "locator": {"type": ["string", "null"]}
+      },
+      "description": "Both artifact and locator must be nonblank strings for a known fact. Missing, null or incomplete provenance is accepted as input but yields needs_input when the fact is needed. Artifact contents are not verified by this selector."
+    },
+    "fact": {
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": {"$ref": "#/$defs/value"},
+        "provenance": {"$ref": "#/$defs/provenance"}
+      }
+    },
+    "profile": {
+      "type": "object",
+      "required": ["schema_version", "target_id", "facts"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1},
+        "target_id": {"$ref": "#/$defs/nonemptyString"},
+        "facts": {
+          "type": "object",
+          "propertyNames": {"$ref": "#/$defs/nonemptyString"},
+          "additionalProperties": {"$ref": "#/$defs/fact"}
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "required": ["field", "op", "value"],
+      "properties": {
+        "field": {"$ref": "#/$defs/nonemptyString"},
+        "op": {"enum": ["eq", "in", "contains_any", "range_within"]}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "op": {"const": "eq"},
+            "value": {"$ref": "#/$defs/value"}
+          }
+        },
+        {
+          "properties": {
+            "op": {"enum": ["in", "contains_any"]},
+            "value": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/scalar"}
+            }
+          }
+        },
+        {
+          "properties": {
+            "op": {"const": "range_within"},
+            "value": {"$ref": "#/$defs/frequencyRange"}
+          }
+        }
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "required": ["id", "rule_ids", "scope_level", "conditions", "required_facts", "sources", "explanation"],
+      "properties": {
+        "id": {"$ref": "#/$defs/nonemptyString"},
+        "rule_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/nonemptyString"}
+        },
+        "scope_level": {
+          "enum": ["general_physics", "structural", "device_family", "device_specific", "process_specific"]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/condition"}
+        },
+        "required_facts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/nonemptyString"}
+        },
+        "sources": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonemptyString"}
+        },
+        "explanation": {"$ref": "#/$defs/nonemptyString"}
+      }
+    },
+    "catalog": {
+      "type": "object",
+      "required": ["schema_version", "entries"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1},
+        "entries": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/entry"}
+        }
+      }
+    }
+  }
+}

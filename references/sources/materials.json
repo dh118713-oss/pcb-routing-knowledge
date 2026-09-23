@@ -1,0 +1,20 @@
+[
+  {
+    "id": "HANDBOOK-NBS100",
+    "kind": "handbook",
+    "title": "Copper Wire Tables (National Bureau of Standards Handbook 100)",
+    "authors": ["Office of Engineering Standards, Institute for Applied Technology, U.S. National Bureau of Standards"],
+    "publisher": "U.S. National Bureau of Standards; official archive hosted by NIST",
+    "year": 1966,
+    "edition_or_revision": "Issued February 21, 1966; supersedes Circular 31",
+    "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/hb/nbshandbook100.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": ["Title page, PDF p.3", "Printed p.3 / PDF p.9: IACS resistivity and temperature coefficient", "Printed p.40 / PDF p.46: resistivity definitions and standard annealed copper"],
+    "supports": ["DC-001"],
+    "limitations": "Selected pages read and visually checked, not the full handbook. Historical material/resistivity reference for standard annealed copper, not PCB ampacity, electrodeposited foil qualification or a thermal model. Real material and operating temperature must be established separately.",
+    "checked_on": "2026-09-23",
+    "evidence": "Official NIST PDF inspected as text and rendered pages. Printed p.3 gives 1.7241 microohm-cm at 20 C; printed p.40 defines volume resistivity as resistance times area divided by length. No wire ampacity table is transferred to PCB traces."
+  }
+]

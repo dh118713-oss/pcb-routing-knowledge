@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+work/
+private/
+.env
+.env.*
+!.env.example
+*.pdf
+*.epub
+*.mobi
+*.zip
+*.7z
+*.log

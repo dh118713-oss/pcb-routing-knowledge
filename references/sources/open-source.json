@@ -1,0 +1,82 @@
+[
+  {
+    "id": "OSS-ESPRESSIF",
+    "kind": "open_source_project",
+    "title": "Espressif Hardware Design Guidelines",
+    "authors": [
+      "Espressif Systems"
+    ],
+    "publisher": "Espressif Systems",
+    "year": 2026,
+    "edition_or_revision": "caa8ff8402f81b18dfefe4c872e7880cd0566b99",
+    "url": "https://github.com/espressif/esp-hardware-design-guidelines/tree/caa8ff8402f81b18dfefe4c872e7880cd0566b99",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "README.md: License",
+      "docs/en/pcb-layout-design.rst: General Principles, Crystal, RF (conditional source; target-specific includes not fully reviewed)"
+    ],
+    "supports": [
+      "OSS-001"
+    ],
+    "limitations": "Read selected source sections, not all per-chip includes or figures. Must resolve IDF_TARGET conditions and consult rendered guide for the actual chip; no measurement performed.",
+    "checked_on": "2026-09-23",
+    "evidence": "Read raw commit-pinned source. Crystal rules and RF reference-plane exceptions are target-conditional; RF antenna section calls for simulation and development-board testing.",
+    "license": "Documentation CC-BY-SA-4.0; code Apache-2.0, per README (GitHub license badge alone is insufficient)."
+  },
+  {
+    "id": "OSS-OLIMEX",
+    "kind": "open_hardware",
+    "title": "OLIMEX ESP32-PoE open hardware, revision M2",
+    "authors": [
+      "OLIMEX Ltd."
+    ],
+    "publisher": "OLIMEX Ltd.",
+    "year": 2026,
+    "edition_or_revision": "PCB M2; commit deb38a377d50eadb04ddc7118a17a5ae58b1ee53",
+    "url": "https://github.com/OLIMEX/ESP32-POE/tree/deb38a377d50eadb04ddc7118a17a5ae58b1ee53",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "README.md: licensing",
+      "HARDWARE/Revision-changes.txt: H1, I, M, M1, M2",
+      "HARDWARE/ESP32-PoE-hardware-revision-M2/ESP32-PoE_Rev_M2.kicad_pcb: header, layers, stackup, network list"
+    ],
+    "supports": [
+      "OSS-002"
+    ],
+    "limitations": "Revision notes are maintainer-reported field experience, not a controlled experiment. PCB and schematic downloaded; only selected PCB metadata inspected, not a full electrical/layout review. Stackup in project file is not certified as manufactured.",
+    "checked_on": "2026-09-23",
+    "evidence": "Revision I records changing 2 to 4 layers for DCDC cooling; H1 records Ethernet loss when external load draws current and circuit changes. M2 file contains four copper layers and a declared stackup. No thermal/EMC raw test data found in reviewed files.",
+    "license": "Hardware Apache-2.0, software GPL3, documentation CC-BY-SA-3.0 per README; inspect individual files before reuse."
+  },
+  {
+    "id": "OSS-KICAD",
+    "kind": "open_source_project",
+    "title": "KiCad DRC providers: track width and differential pair coupling",
+    "authors": [
+      "KiCad Developers"
+    ],
+    "publisher": "KiCad project (GitHub source mirror)",
+    "year": 2026,
+    "edition_or_revision": "48340549661ce36e91519b7c9fa114a34d8f7f2f",
+    "url": "https://github.com/KiCad/kicad-source-mirror/tree/48340549661ce36e91519b7c9fa114a34d8f7f2f",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "pcbnew/drc/drc_test_provider_track_width.cpp: Run",
+      "pcbnew/drc/drc_test_provider_diff_pair_coupling.cpp: constraint type selection",
+      "LICENSE.README"
+    ],
+    "supports": [
+      "OSS-003"
+    ],
+    "limitations": "Static reading of selected source only; no KiCad build or live DRC run. Geometric checks do not establish impedance, thermal or EMC compliance.",
+    "checked_on": "2026-09-23",
+    "evidence": "Track width Run explicitly skips checks if no TRACK_WIDTH_CONSTRAINT; checks actual segments/arcs against per-layer resolved limits. Differential-pair provider uses gap and maximum-uncoupled constraints.",
+    "license": "Project distribution GPL-3.0-or-later with listed exceptions; read track-width file header GPL-2.0-or-later. No upstream code copied into this repository."
+  }
+]

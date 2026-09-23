@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "target_id": "U1:RF_P-to-matching",
+  "facts": {
+    "board_revision": {
+      "value": "synthetic-mixed-r1",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / board_revision"
+      }
+    },
+    "component_ref": {
+      "value": "U1",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / component_ref"
+      }
+    },
+    "net_id": {
+      "value": "RF_U1",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / net_id"
+      }
+    },
+    "net_role": {
+      "value": "rf_feed",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / net_role"
+      }
+    },
+    "vendor": {
+      "value": "Texas Instruments",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / vendor"
+      }
+    },
+    "device_family": {
+      "value": "CC26xx",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / device_family"
+      }
+    },
+    "device_model": {
+      "value": "CC2652R",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / device_model"
+      }
+    },
+    "package": {
+      "value": "RGZ-VQFN48",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / package"
+      }
+    },
+    "technology": {
+      "value": "BLE",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / technology"
+      }
+    },
+    "frequency_hz": {
+      "value": {
+        "min": 2402000000,
+        "max": 2480000000,
+        "unit": "Hz"
+      },
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / frequency_hz"
+      }
+    },
+    "reference_design_revision": {
+      "value": "synthetic-reference-unreviewed",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / reference_design_revision"
+      }
+    },
+    "stackup_revision": {
+      "value": "synthetic-stackup-unreviewed",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / stackup_revision"
+      }
+    },
+    "antenna_implementation": {
+      "value": "synthetic-chip-antenna",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / antenna_implementation"
+      }
+    },
+    "source_return": {
+      "value": "synthetic-U1-GND",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / source_return"
+      }
+    },
+    "load_return": {
+      "value": "synthetic-matching-GND",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U1:RF_P-to-matching / load_return"
+      }
+    }
+  }
+}

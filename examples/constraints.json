@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "board_revision": "synthetic-demo-r1",
+  "scope": "合成接口演示：只有VCC线宽和返回路径两项，不是完整板级检查集。",
+  "checks": [
+    {"id": "vcc-width", "rule_id": "PROJECT-DEMO-001", "target": "VCC", "acceptance_criterion": "按本合成样例要求，所有VCC导体线段至少0.5 mm；此值不能复用为通用电源线宽。", "method": "geometry", "basis": [{"kind": "project_requirement", "id": "DEMO-REQ-01", "locator": "examples/README.md#合成要求"}]},
+    {"id": "return-path", "rule_id": "PROJECT-DEMO-002", "target": "CLK参考平面", "acceptance_criterion": "检查示例CLK全路径参考导体连续性，不能仅凭网络连通声明通过。", "method": "engineering_review", "basis": [{"kind": "project_requirement", "id": "DEMO-REQ-02", "locator": "examples/README.md#合成要求"}]}
+  ]
+}

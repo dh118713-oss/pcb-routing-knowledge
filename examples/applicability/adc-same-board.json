@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "target_id": "U2:AIN-to-sensor",
+  "facts": {
+    "board_revision": {
+      "value": "synthetic-mixed-r1",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / board_revision"
+      }
+    },
+    "component_ref": {
+      "value": "U2",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / component_ref"
+      }
+    },
+    "net_id": {
+      "value": "ADC_IN",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / net_id"
+      }
+    },
+    "net_role": {
+      "value": "analog_input",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / net_role"
+      }
+    },
+    "vendor": {
+      "value": "synthetic",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / vendor"
+      }
+    },
+    "device_model": {
+      "value": "unspecified-ADC",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / device_model"
+      }
+    },
+    "source_return": {
+      "value": "synthetic-sensor-return",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / source_return"
+      }
+    },
+    "load_return": {
+      "value": "synthetic-U2-reference",
+      "provenance": {
+        "artifact": "examples/applicability/README.md",
+        "locator": "Synthetic facts: U2:AIN-to-sensor / load_return"
+      }
+    }
+  }
+}

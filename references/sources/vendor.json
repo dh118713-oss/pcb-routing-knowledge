@@ -1,0 +1,623 @@
+[
+  {
+    "id": "VENDOR-TI-SLYT614",
+    "kind": "application_note",
+    "title": "Five steps to a great PCB layout for a step-down converter",
+    "authors": [
+      "Chris Glaser"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2015,
+    "edition_or_revision": "SLYT614; Analog Applications Journal, 1Q 2015, pp.11-14",
+    "url": "https://www.ti.com/lit/an/slyt614/slyt614.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-4 (printed pp.11-14): Steps 1-5; Special considerations; Figs.1-7 and references"
+    ],
+    "supports": [
+      "PWR-001",
+      "PWR-002",
+      "PWR-003",
+      "PWR-006"
+    ],
+    "limitations": "技术正文共4页已核读，末尾地区及法律页不作为技术证据。针对TPS62xxx集成开关Buck，以TPS62130A为例；单点接地、VOS路径及WCSP特例不可无条件迁移；每安培一个过孔属于经验值。",
+    "checked_on": "2026-09-23",
+    "evidence": "输入电容先于其它功率器件布局；VOS专用取样不得切断更关键的PGND路径；WCSP特例解释SW经输入电容下方或过孔连接的取舍。"
+  },
+  {
+    "id": "VENDOR-TI-SLVA773",
+    "kind": "application_note",
+    "title": "Five Steps to a Good PCB Layout of a Boost Converter",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2016,
+    "edition_or_revision": "SLVA773; May 2016; PDF cover labels User’s Guide",
+    "url": "https://www.ti.com/lit/an/slva773/slva773.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-7: Introduction; steps 1-5; Conclusion; References"
+    ],
+    "supports": [
+      "PWR-001",
+      "PWR-002",
+      "PWR-003",
+      "PWR-006"
+    ],
+    "limitations": "技术正文已核读，法律页不作技术证据。以TPS61236和TPS61xxx Boost为范围；输入连续性与布局先后不能推广到其它拓扑/模式；没有可直接迁移的温升与载流模型。",
+    "checked_on": "2026-09-23",
+    "evidence": "输出电容先放以减小脉冲回路寄生；随后安排电感/可选snubber，再处理输入与小信号；FB避免靠近SW并行；p.6也展示了按实际功率回流安排完整地平面的方案。"
+  },
+  {
+    "id": "VENDOR-TI-SNVA021",
+    "kind": "application_note",
+    "title": "AN-1149 Layout Guidelines for Switching Power Supplies",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2013,
+    "edition_or_revision": "SNVA021C; October 1999, revised April 2013",
+    "url": "https://www.ti.com/lit/an/snva021c/snva021c.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-4: abstract; sections 1-6; text descriptions of good/bad boost layouts"
+    ],
+    "supports": [
+      "PWR-003",
+      "PWR-006"
+    ],
+    "limitations": "旧版通用应用笔记；p.2含15 mil/A和每200 mA一个过孔的经验，缺少足以成为通用规范的铜厚/温升/孔铜等条件。图示未进行尺寸提取，不声称读出图中未标注参数。",
+    "checked_on": "2026-09-23",
+    "evidence": "核读反馈避开电感/噪声功率路径、输入与补偿电容靠近IC；与SLVA773的每1 A一个过孔建议存在不同适用假设，作为拒绝泛化尺寸口诀的来源。"
+  },
+  {
+    "id": "VENDOR-TI-SNVA803",
+    "kind": "application_note",
+    "title": "Improve High-Current DC/DC Regulator EMI Performance for Free With Optimized Power Stage Layout",
+    "authors": [
+      "Timothy Hegarty"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2019,
+    "edition_or_revision": "SNVA803; September 2019; technical note",
+    "url": "https://www.ti.com/lit/ab/snva803/snva803.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-2: Conventional Layout Designs; Switching Loop Optimization; Results and Discussion; Extension to High-Current Applications",
+      "PDF p.2 rendered and visually reviewed: Figs.3-6 including switching-loop cross-section and measured waveforms"
+    ],
+    "supports": [
+      "PWR-002",
+      "PWR-004"
+    ],
+    "limitations": "只证明文章特定LM5146-Q1功率级条件的布局/波形比较；没有提供整机EMC合格证据。页脚技术日期为2019，PDF处理/法律页日期为2020；未将后者误作技术修订年。",
+    "checked_on": "2026-09-23",
+    "evidence": "Fig.5在48 V输入、12 V输出、8 A负载下比较纵向与横向回路；图中峰值分别约58 V与62 V，正文称优化降低约4 V。Fig.4明确显示L1/L2紧耦合返回。"
+  },
+  {
+    "id": "VENDOR-TI-SLVA959",
+    "kind": "application_note",
+    "title": "Best Practices for Board Layout of Motor Drivers",
+    "authors": [
+      "Motor Drive Business Unit"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2021,
+    "edition_or_revision": "SLVA959B; November 2018, revised October 2021",
+    "url": "https://www.ti.com/lit/an/slva959b/slva959b.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: cover and table of contents",
+      "PDF pp.16-24: sections 4, 5 and beginning of 6, general routing, capacitors and MOSFET power-stage placement",
+      "PDF pp.30-34: sections 7.1-7.9, current-sense topology, placement, routing, net ties, filters and Kelvin connections",
+      "PDF pp.25-29: MOSFET placement, high-current loops and VDRAIN Kelvin sense"
+    ],
+    "supports": [
+      "PWR-004",
+      "PWR-005"
+    ],
+    "limitations": "没有声称核读全部36页；针对TI DRV类电机驱动。起始线宽、分地、弯角等建议并非跨板型的绝对规则。技术修订日期为2021-10，PDF元数据生成于2022不能替代正文版本。",
+    "checked_on": "2026-09-23",
+    "evidence": "§7.7以Net Tie限制采样端点避免EDA将负端随意接到地；§7.8要求滤波靠近放大器，§7.9列出Kelvin与对称布局；§4要求gate与对应source返回邻近。"
+  },
+  {
+    "id": "VENDOR-TI-SLLA414",
+    "kind": "application_note",
+    "title": "High-Speed Layout Guidelines for Signal Conditioners and USB Hubs",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2026,
+    "edition_or_revision": "SLLA414A; August 2025, revised January 2026",
+    "url": "https://www.ti.com/lit/an/slla414a/slla414a.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-13: scope, protocol examples, impedance, skew, return paths, reference planes and differential routing",
+      "PDF pp.15-22: via stubs, back-drilling, anti-pads, pad discontinuities, stackups, ESD/EMI layout"
+    ],
+    "supports": [
+      "HS-001",
+      "HS-002",
+      "HS-003",
+      "HS-004",
+      "HS-005"
+    ],
+    "limitations": "未把其协议摘要当作接口规范：原文说明数值是指南而非总是精确，部分表格表达简略。5W、200 mil stitching距离、15 mil残桩、60%焊盘挖空及推荐层数不作为通用硬约束。未核读p.14连接器示例细节。",
+    "checked_on": "2026-09-23",
+    "evidence": "§3.3区分对内与对间偏斜，举例USB TX/RX无需彼此等长；§3.5说明跨平面分割与换层返回；§4.14要求入口防护及保护前后路径隔离。"
+  },
+  {
+    "id": "VENDOR-TI-SWRA640",
+    "kind": "application_note",
+    "title": "CC13xx/CC26xx Hardware Configuration and PCB Design Considerations",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2024,
+    "edition_or_revision": "SWRA640H; December 2018, revised May 2024",
+    "url": "https://www.ti.com/lit/an/swra640h/swra640h.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: scope and contents",
+      "PDF pp.15-20: sections 4.1-4.11, PCB layout, balun/filter, decoupling, crystal return, RF lines and EM simulation"
+    ],
+    "supports": [
+      "ANA-002",
+      "ANA-005",
+      "HS-001",
+      "HS-002",
+      "HS-006"
+    ],
+    "limitations": "仅核读PCB布局相关章节；未声称验证全部参考板、天线章节或无线认证。针对所列CC13xx/CC26xx平台，不能据此为任意射频芯片或频段生成匹配值。",
+    "checked_on": "2026-09-23",
+    "evidence": "§4.1指出改变顶层至地层距离可能需重做balun；§4.3举例LP-EM-CC1354P10-6加长RF路径已被匹配优化，缩短须重新调谐；§4.11要求比较定制板与参考板S参数。"
+  },
+  {
+    "id": "VENDOR-TI-SNVU591",
+    "kind": "reference_design",
+    "title": "LM5146-Q1 EVM User’s Guide",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2018,
+    "edition_or_revision": "SNVU591; November 2018; LM5146-Q1-EVM12V",
+    "url": "https://www.ti.com/lit/ug/snvu591/snvu591.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-4: scope, evaluation safety and contents",
+      "PDF pp.6-7: EVM description and electrical specifications",
+      "PDF pp.10-13: test setup/procedure, measurement limitations, efficiency and output ripple",
+      "PDF pp.18-20: load transient, thermal and CISPR 25 conducted EMI test conditions",
+      "PDF pp.23-24: 4-layer 2-oz copper layout; p.23 rendered and visually reviewed",
+      "PDF p.20 rendered and visually reviewed: Fig.18 spectra, detectors, limits and shield condition"
+    ],
+    "supports": [
+      "PWR-002",
+      "PWR-006"
+    ],
+    "limitations": "公开评估板资料，不是本仓库亲测；未复核完整BOM或制造文件。测试曲线为典型参考；额定电流与风速有关。EMI例子仅覆盖给定传导测试，且安装了额外屏蔽罩；不得据此声称任意改板或整机合规。p.6与p.7部分效率摘要不一致，本库不转录这些数值。",
+    "checked_on": "2026-09-23",
+    "evidence": "§7.3明确四层2 oz；§6.4使用5 µH LISN，48 V输入/6 A负载，150 kHz-108 MHz，峰值/平均检测并加装S1屏蔽罩；§6.2.6给出48 V、2→8 A与4→8 A、1 A/µs负载阶跃。"
+  },
+  {
+    "id": "VENDOR-ADI-MT031",
+    "kind": "application_note",
+    "title": "Grounding Data Converters and Solving the Mystery of \"AGND\" and \"DGND\"",
+    "authors": [
+      "Walt Kester",
+      "James Bryant",
+      "Mike Byrne"
+    ],
+    "publisher": "Analog Devices",
+    "year": 2008,
+    "edition_or_revision": "MT-031 tutorial; Rev. A, October 2008; PDF copyright 2009",
+    "url": "https://www.analog.com/media/en/training-seminars/tutorials/MT-031.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: introduction and byline",
+      "PDF pp.4-8: planes, multicard grounding and low internal digital current devices",
+      "PDF pp.10-14: sampling clock, single-card versus multicard grounding, high digital currents and summary"
+    ],
+    "supports": [
+      "ANA-001",
+      "ANA-004"
+    ],
+    "limitations": "教程含不同架构下的不同接地方案，不能截取其中一种当作普适规则。本文未声称核读全部17页。版本采用首页Rev.A日期，不把2009版权标记误作全部技术内容的修订日期。",
+    "checked_on": "2026-09-23",
+    "evidence": "p.8明确DGND脚名不意味着必须连到系统数字地；pp.13-14对高数字电流给出条件化替代方案并警告；p.14总结没有在全部情况都最优的单一接地方法。"
+  },
+  {
+    "id": "VENDOR-ADI-MT101",
+    "kind": "application_note",
+    "title": "Decoupling Techniques",
+    "authors": [
+      "Walt Kester"
+    ],
+    "publisher": "Analog Devices",
+    "year": 2009,
+    "edition_or_revision": "MT-101 tutorial; Rev. 0, March 2009",
+    "url": "https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-7: decoupling purpose, ferrite caveats, real-capacitor parasitics, capacitor types, local HF loops and LC resonance",
+      "PDF pp.8-13: LC SPICE example and AD8000/AD9445 evaluation-board decoupling experiments; pp.9,11,12 rendered and visually reviewed"
+    ],
+    "supports": [
+      "ANA-002",
+      "ANA-003"
+    ],
+    "limitations": "作者来自PDF Author元数据，正文首页没有完整署名。已核读技术正文pp.1-13，末页参考文献/法律文字不作额外技术证据。器件容量范围反映资料年代；示例容量、距离、频率和阻尼电阻不可直接用作统一参数。去耦移除实验不是单纯版图距离对照。",
+    "checked_on": "2026-09-23",
+    "evidence": "p.3给出ESR/ESL等非理想模型，p.6 Fig.6强调电源和返回连接的低电感，p.7解释LC网络共振峰与阻尼代价；p.2提及磁珠偏流/非线性风险。 pp.9-13区分LC仿真与AD8000、AD9445 LVDS评估板真实去耦移除实验。"
+  },
+  {
+    "id": "VENDOR-ADI-MT095",
+    "kind": "application_note",
+    "title": "EMI, RFI, and Shielding Concepts",
+    "authors": [
+      "Walt Kester"
+    ],
+    "publisher": "Analog Devices",
+    "year": 2009,
+    "edition_or_revision": "MT-095 tutorial; Rev. 0, January 2009",
+    "url": "https://www.analog.com/media/en/training-seminars/tutorials/MT-095.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-7: EMC scope, source/path/receiver, coupling mechanisms, common impedance, electric/magnetic coupling and passive filters"
+    ],
+    "supports": [
+      "ANA-001",
+      "ANA-003",
+      "ANA-004",
+      "HS-005"
+    ],
+    "limitations": "作者来自PDF Author元数据，首页没有完整署名。教程声明为广泛主题的介绍，偏重抗扰度；不能当成产品EMC测试标准。仅核读前7页；没有声称掌握后文全部屏蔽/法规细节。",
+    "checked_on": "2026-09-23",
+    "evidence": "pp.2-3按source/path/receiver分类并分出共阻抗、近场与远场；pp.5-6区分电场与磁场措施；pp.6-7列出滤波器热噪声、偏置压降和非线性代价。"
+  },
+  {
+    "id": "VENDOR-ST-AN2867",
+    "kind": "application_note",
+    "title": "Guidelines for oscillator design on STM8AF/AL/S and STM32 MCUs/MPUs",
+    "authors": [
+      "STMicroelectronics"
+    ],
+    "publisher": "STMicroelectronics",
+    "year": 2026,
+    "edition_or_revision": "AN2867; Rev. 24, February 2026",
+    "url": "https://www.st.com/resource/en/application_note/an2867-oscillator-design-guide-for-stm8afals-stm32-mcus-and-mpus-stmicroelectronics.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: scope and version",
+      "PDF pp.45-51: sections 7.1-7.4, PCB design guidelines/examples, cleaning and LSE coupling",
+      "PDF p.47 rendered and visually reviewed: Figs.14-16, local oscillator ground/guard and adjacent routing"
+    ],
+    "supports": [
+      "ANA-005"
+    ],
+    "limitations": "仅核读与PCB布局有关的章节，没有全面复核晶体选型表与增益裕量推导。布局示例以likely通过EMC描述，没有给出实测通过数据；局部地/guard/外壳要求限于适用器件，不推广为整板规则。",
+    "checked_on": "2026-09-23",
+    "evidence": "§7.1要求缩短晶体连接、控制寄生与附近高速信号，pp.48-51对照长线/测试点/耦合问题与改善布局；p.51指出清洁与特定PC13活动对LSE的影响。"
+  },
+  {
+    "id": "VENDOR-NEXPERIA-AN90003",
+    "kind": "application_note",
+    "title": "LFPAK MOSFET thermal design guide",
+    "authors": [
+      "Nexperia B.V."
+    ],
+    "publisher": "Nexperia",
+    "year": 2026,
+    "edition_or_revision": "AN90003; Rev. 5.0, 12 February 2026",
+    "url": "https://assets.nexperia.com/documents/application-note/AN90003.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-4: scope, losses and heat transfer",
+      "PDF pp.10-14: junction-to-ambient paths, PCB limitation, LFPAK56D single-layer simulation assumptions and results",
+      "PDF pp.21-23: LFPAK56D 4-layer-plus-vias simulation assumptions and results"
+    ],
+    "supports": [
+      "PWR-006",
+      "PWR-007"
+    ],
+    "limitations": "只核读所列章节，未读完54页。多数板级结果来自热仿真而非本库实测；LFPAK封装、100×100 mm板、2 oz铜、环境和模型过孔不能迁移为通用PCB要求。不能将其约1 W示例或FR4温度范围视为任意材料的定额。",
+    "checked_on": "2026-09-23",
+    "evidence": "§3.1.1与§3.2.1明确设置板厚、板面积、铜厚、环境与自然对流，比较单层和四层过孔路径；正文指出增加散热铜面积有边际收益递减，并要求检查板材温度而非只看结温。"
+  },
+  {
+    "id": "VENDOR-WE-ANP093",
+    "kind": "application_note",
+    "title": "WE-CCMF: Ceramic Common-Mode Filters for EMI Suppression and Signal Integrity in High-Speed Differential Interfaces",
+    "authors": [
+      "Swarnasree Banik",
+      "Robert Schillinger",
+      "Sofie-Marie Wacker"
+    ],
+    "publisher": "Würth Elektronik eiSos",
+    "year": 2026,
+    "edition_or_revision": "ANP093a; 2026/06/11",
+    "url": "https://www.we-online.com/components/products/media/905342",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: title, authors, version and introduction",
+      "PDF p.6 and pp.8-11: sections 4.1-4.3 and 5, layout, mixed-mode measurement, part-specific summaries and eye-diagram conditions",
+      "PDF p.11 rendered and visually reviewed: Figs.10-11, 10 Gbit/s and 20 Gbit/s examples"
+    ],
+    "supports": [
+      "HS-007"
+    ],
+    "limitations": "只核读所列章节，未完整读完16页，也未核验它所引用ANP007的完整测试流程。原文对不同料号的布局结论不同，p.10说明单端夹具可能引入不平衡/测量伪影，部分推荐与表格排名并不一致；共模衰减的正数说法与S参数dB符号需区分。不能据此生成固定地铜/过孔硬规则或协议认证结论。",
+    "checked_on": "2026-09-23",
+    "evidence": "§4.2要求联合检查Sdd21、Scc21、模式转换；pp.9-10列出748030024、748020024和748032455的不同布局反应；p.11报告748030024在20 Gbit/s即使均衡改善眼图仍未满足其通过条件。"
+  },
+  {
+    "id": "VENDOR-WE-ANP139",
+    "kind": "application_note",
+    "title": "Enclosure Shielding and EMC: A Comprehensive Guide to Electromagnetic Compatibility",
+    "authors": [
+      "Heinz Zenkner"
+    ],
+    "publisher": "Würth Elektronik eiSos",
+    "year": 2026,
+    "edition_or_revision": "ANP139a; 2026/08/26",
+    "url": "https://www.we-online.com/components/products/media/923990",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: introduction, scope, author and version",
+      "PDF pp.3-7: sections 2.6-2.7 and 3.1, cable/enclosure connection and experimental setup",
+      "PDF pp.9-10 rendered and visually reviewed: interface-filter reference connection and Figs.9-12"
+    ],
+    "supports": [
+      "ANA-006",
+      "HS-005"
+    ],
+    "limitations": "仅核读所列章节，不声称读完23页或后半部EMI吸波贴实验。高频双端屏蔽结论不能越过安全隔离或忽略低频地电位差；Fig.10正文讨论未屏蔽线和滤波，而图注沿用屏蔽线/机壳开闭描述，存在不一致，因此不把25 dB等数值固化为定量设计规则。",
+    "checked_on": "2026-09-23",
+    "evidence": "§3.1以10至约500 MHz梳状谱源、D-Sub连接器与终端箱构造实验，通过H场探头和线缆电流钳比较接触方案；pp.9-10说明接口滤波依赖低阻抗机壳参考，失去连接后滤波效果显著变化。"
+  },
+  {
+    "id": "VENDOR-MICROCHIP-AN2519",
+    "kind": "application_note",
+    "title": "AVR Microcontroller Hardware Design Considerations",
+    "authors": [
+      "Microchip Technology Inc."
+    ],
+    "publisher": "Microchip Technology",
+    "year": 2017,
+    "edition_or_revision": "AN2519; DS00002519A; 2017",
+    "url": "https://ww1.microchip.com/downloads/en/AppNotes/00002519A.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-8: scope, power/decoupling and RESET connection including external switch",
+      "PDF p.12: section 4.3.1 external reset circuitry and PDI",
+      "PDF p.17: sections 5.5-5.6, RTC crystal and PCB layout"
+    ],
+    "supports": [
+      "ANA-002",
+      "ANA-005",
+      "ANA-007"
+    ],
+    "limitations": "针对所述AVR器件/编程器的历史指南，未全面核读27页或全部编程接口。AVCC接地、去耦数值、上拉、RC与保护取舍必须对照目标器件；RESET可能复用PDI/DebugWIRE/高压编程，不能套通用保护网络。",
+    "checked_on": "2026-09-23",
+    "evidence": "p.5指出平均供电电流小不代表边沿瞬态不重要；pp.7-8要求RESET保护邻近器件并考虑开关放电寄生；p.12说明PDI使用RESET作为时钟，额外滤波可能破坏下载和调试。"
+  },
+  {
+    "id": "VENDOR-TI-SPRABI1",
+    "kind": "application_note",
+    "title": "DDR3 Design Requirements for KeyStone Devices",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2022,
+    "edition_or_revision": "SPRABI1D; January 2018, revised July 2022",
+    "url": "https://www.ti.com/lit/an/sprabi1/sprabi1.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1,3-4,6: scope, balanced-T and fly-by topology, leveling and prerequisites",
+      "PDF pp.9-10: section 4.7 electrical interface and overshoot/undershoot requirements",
+      "PDF pp.14-20: termination, stackup, net classes, address/control, data byte lanes and clock routing"
+    ],
+    "supports": [
+      "INT-001",
+      "INT-002",
+      "INT-003",
+      "INT-004",
+      "INT-010"
+    ],
+    "limitations": "仅核读所列章节，未读完34页；适用于所列TI KeyStone DDR3平台，不是全部DDR/LPDDR规范。50/100 Ω、支线80/40 mil、偏斜、过孔数、终端及层数不能迁移为通用默认。p.15 VTT生成与p.20时钟终端/支线描述需结合目标器件资料复核，不能自动推导无缓冲分压供电或缺失数字。",
+    "checked_on": "2026-09-23",
+    "evidence": "§3.1区分T与fly-by及leveling；§6.2把外部终端置于线路末端并要求完整寄生仿真判断是否需要；§6.3.1按地址/控制、DQ/DQS和CK分组，要求连续参考、逐负载匹配和适用路径的过孔一致性。"
+  },
+  {
+    "id": "VENDOR-TI-SLLA272",
+    "kind": "application_note",
+    "title": "The RS-485 Design Guide",
+    "authors": [
+      "Thomas Kugelstadt"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2021,
+    "edition_or_revision": "SLLA272D; February 2008, revised May 2021",
+    "url": "https://www.ti.com/lit/an/slla272d/slla272d.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-3: physical-layer scope, topology, cable, termination and stub electrical length",
+      "PDF pp.4-5: failsafe bias, bus loading, data rate/cable length and node capacitance/spacing",
+      "PDF pp.6-7: grounding, remote ground potentials and galvanic isolation"
+    ],
+    "supports": [
+      "INT-001",
+      "INT-005",
+      "INT-007",
+      "INT-010"
+    ],
+    "limitations": "核读pp.1-7，未把后续参考文献与法律页作为新证据。120 Ω、1/10边沿时间、单位负载和示例偏置值依赖器件、介质、负载及应用；资料不定义上层协议，不是所有收发器或节点数的保证。远端接地与隔离必须按系统接地/屏蔽和安全要求审查。",
+    "checked_on": "2026-09-23",
+    "evidence": "§2明确RS-485只规定电气层；§6按传输线阻抗终端并使stub单程传播短于所选边沿比例；§§7-10联合偏置、节点负载及电容；§11讨论地偏移、地环路和信号/电源隔离。"
+  },
+  {
+    "id": "VENDOR-TI-SLLA270",
+    "kind": "application_note",
+    "title": "Controller Area Network Physical Layer Requirements",
+    "authors": [
+      "Steve Corrigan"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2008,
+    "edition_or_revision": "SLLA270; January 2008",
+    "url": "https://www.ti.com/lit/an/slla270/slla270.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: title, author, date and classic high-speed CAN scope",
+      "PDF pp.4-8: physical layer, cable length/rate, shield, grounding, standard/split termination and connectors",
+      "PDF pp.9-11: chokes, stub/critical length, isolation and total delay, bit timing and node capacitance"
+    ],
+    "supports": [
+      "INT-001",
+      "INT-006",
+      "INT-007",
+      "INT-010"
+    ],
+    "limitations": "2008年经典高速CAN资料，仅核读所列页；不覆盖CAN FD/CAN XL或当前全部ISO 11898版本。120 Ω、stub长度、4.7 nF和传播延迟仅为示例；split termination段将频率写为Mbps等表达不能直接计算。屏蔽pigtail/单点接地不是高频EMC和所有安全架构的通用结论。",
+    "checked_on": "2026-09-23",
+    "evidence": "§4.5要求线路两端匹配终端并讨论split termination；§4.8按边沿及往返传播解释stub；§4.9将隔离器、收发器、线缆和控制器纳入传播预算；§4.11说明节点电容及不均匀间距引起阻抗变化。"
+  },
+  {
+    "id": "VENDOR-TI-SLLA284",
+    "kind": "application_note",
+    "title": "Digital Isolator Design Guide",
+    "authors": [
+      "Texas Instruments"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2023,
+    "edition_or_revision": "SLLA284G; July 2022, revised September 2023",
+    "url": "https://www.ti.com/lit/an/slla284/slla284.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF p.1: title, scope and revision",
+      "PDF pp.7-8: isolated RS-485 examples and isolation, timing, CMTI and package parameters",
+      "PDF pp.10-18: PCB material, layer stack, creepage, impedance, reference planes, routing, vias and decoupling"
+    ],
+    "supports": [
+      "INT-001",
+      "INT-007",
+      "INT-008",
+      "INT-009",
+      "INT-010"
+    ],
+    "limitations": "只核读所列章节，未完整核读21页；应用笔记不替代器件指南和产品安规。四层、3W、槽宽大于1 mm、每端两个过孔和示例阻抗不是通用硬规则；连续参考平面只能在同一隔离域内落实。p.13对高频返回的least inductance表述不当作阻抗的一般定义。",
+    "checked_on": "2026-09-23",
+    "evidence": "§3.1区分工作/瞬态耐压、传播延迟、偏斜、CMTI及封装；§§4.2-4.3要求图示隔离器下方各层禁布导体并讨论槽；§§4.4-4.8强调同域连续参考、短路径、换层返回和局部去耦。"
+  },
+  {
+    "id": "VENDOR-TI-SLUA271",
+    "kind": "application_note",
+    "title": "QFN and SON PCB Attachment",
+    "authors": [
+      "Steve Kummerl",
+      "Bernhard Lange",
+      "Dominic Nguyen"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2023,
+    "edition_or_revision": "SLUA271C; June 2002, revised December 2023",
+    "url": "https://www.ti.com/lit/an/slua271c/slua271c.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-4: scope, revision, contents, package introduction and essentials for assembly quality",
+      "PDF pp.5-12: land pads, exposed pad/thermal vias, solder mask, finish, bending, paste and stencil; pp.8,12 rendered and visually reviewed",
+      "PDF pp.13-15: placement, board-specific reflow profiles, cleaning and X-ray/visual inspection"
+    ],
+    "supports": [
+      "MFG-001",
+      "MFG-002",
+      "MFG-003",
+      "MFG-004",
+      "MFG-005",
+      "MFG-006"
+    ],
+    "limitations": "已核读pp.1-15，未完整核读21页或返修章节。范围为所述TI QFN/SON；尺寸、0.125 mm钢网、50%-70%印刷覆盖、50%空洞和回流次数不是全部封装的通用参数。资料引用的IPC/JEDEC版本和正文未因此视为本库核读；p.15将X-ray与AOI分类混用，侧面焊脚结论不直接用于可润湿侧翼。MFG-006的测试入口/覆盖映射/版本冻结是工程综合要求，本文仅支持工艺实验与检验部分。",
+    "checked_on": "2026-09-23",
+    "evidence": "§3.4说明中心焊盘需焊接、散热过孔不一定必需且塞孔/tenting有焊料流失与困气取舍；§4.4示例减少中心印刷覆盖防止漂浮；§5.2要求实际焊点及不同位置测温；§§5.3-5.4说明清洁残留需应用评估和隐藏焊点检验。Fig.4-3核对了铜/阻焊/焊膏的不同几何。"
+  },
+  {
+    "id": "VENDOR-TI-SLMA002",
+    "kind": "application_note",
+    "title": "PowerPAD Thermally Enhanced Package",
+    "authors": [
+      "Steven Kummerl"
+    ],
+    "publisher": "Texas Instruments",
+    "year": 2018,
+    "edition_or_revision": "SLMA002H; November 1997, revised July 2018",
+    "url": "https://www.ti.com/lit/an/slma002h/slma002h.pdf",
+    "doi": null,
+    "isbn": null,
+    "access_status": "partial_content_reviewed",
+    "reviewed_sections": [
+      "PDF pp.1-2: title, author, revision, scope and package-to-board thermal path",
+      "PDF pp.4-12: PCB thermal lands, thermal via construction, stencil determination and assembly/X-ray characterization; pp.11-12 rendered and visually reviewed",
+      "PDF pp.13-15: reflow suggestion, MSL/classification context, installation summary and repair overview/removal"
+    ],
+    "supports": [
+      "MFG-001",
+      "MFG-002",
+      "MFG-003",
+      "MFG-004",
+      "MFG-005",
+      "MFG-006"
+    ],
+    "limitations": "仅核读所列页，未核读全部31页及后续热定义/返修附录；PowerPAD示例不是任意QFN或暴露焊盘工艺。0.33 mm过孔、1:1钢网、50%焊接面积、预热与回流曲线必须结合具体器件/板型/焊膏和热需求；分类耐温不能代替实际焊接曲线。Fig.12-13是热模型，不是量产寿命数据；MFG-006的DFT与版本控制为本库综合要求。",
+    "checked_on": "2026-09-23",
+    "evidence": "§§2.3-2.4要求查器件专用尺寸与焊盘网络，热过孔参数影响散热和焊接，导热过孔不建议thermal relief；§2.5的1:1中心钢网示例与SLUA271的QFN分窗起点不同；§3.1要求实际工艺表征焊点/热效能且讨论X-ray；§3.2把焊膏、设备、板复杂度和MSL共同纳入曲线。"
+  }
+]

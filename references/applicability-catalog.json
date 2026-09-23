@@ -1,0 +1,446 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "CAND-RETURN-PATH",
+      "rule_ids": [
+        "BAS-001",
+        "BAS-002"
+      ],
+      "scope_level": "general_physics",
+      "conditions": [
+        {
+          "field": "net_role",
+          "op": "in",
+          "value": [
+            "signal",
+            "rf_feed",
+            "clock",
+            "memory_data",
+            "memory_clock",
+            "memory_ca",
+            "analog_input"
+          ]
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "net_id",
+        "source_return",
+        "load_return"
+      ],
+      "sources": [
+        "BOOK-003"
+      ],
+      "explanation": "General signal/return analysis only; no RF band or universal via distance. Actual copper and layer transition still require inspection."
+    },
+    {
+      "id": "CAND-POWER-PATH",
+      "rule_ids": [
+        "PWR-006"
+      ],
+      "scope_level": "structural",
+      "conditions": [
+        {
+          "field": "net_role",
+          "op": "in",
+          "value": [
+            "power",
+            "power_return"
+          ]
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "net_id",
+        "current_waveform",
+        "finished_copper_um",
+        "drop_budget",
+        "thermal_budget"
+      ],
+      "sources": [
+        "VENDOR-TI-SNVA021",
+        "VENDOR-TI-SLVA773"
+      ],
+      "explanation": "Power sizing input check; no fixed mm/A or via/A rule."
+    },
+    {
+      "id": "CAND-TI-CC2652R-RF",
+      "rule_ids": [
+        "RF-001",
+        "HS-006"
+      ],
+      "scope_level": "device_specific",
+      "conditions": [
+        {
+          "field": "net_role",
+          "op": "eq",
+          "value": "rf_feed"
+        },
+        {
+          "field": "device_model",
+          "op": "eq",
+          "value": "CC2652R"
+        },
+        {
+          "field": "package",
+          "op": "eq",
+          "value": "RGZ-VQFN48"
+        },
+        {
+          "field": "technology",
+          "op": "in",
+          "value": [
+            "BLE",
+            "IEEE802.15.4",
+            "Thread",
+            "Zigbee",
+            "TI-proprietary-2G4"
+          ]
+        },
+        {
+          "field": "frequency_hz",
+          "op": "range_within",
+          "value": {
+            "min": 2360000000,
+            "max": 2500000000,
+            "unit": "Hz"
+          }
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "component_ref",
+        "net_id",
+        "reference_design_revision",
+        "stackup_revision",
+        "antenna_implementation"
+      ],
+      "sources": [
+        "DATASHEET-TI-CC2652R",
+        "VENDOR-TI-SWRA640"
+      ],
+      "explanation": "Frequency is datasheet silicon range, not regulatory permission. Candidate only for the RF path of this exact part/package and supported protocol family; matching, reference-board and RF geometry still need review."
+    },
+    {
+      "id": "CAND-TI-CC1310-HIGH-SUB1-RF",
+      "rule_ids": [
+        "RF-001",
+        "HS-006"
+      ],
+      "scope_level": "device_specific",
+      "conditions": [
+        {
+          "field": "net_role",
+          "op": "eq",
+          "value": "rf_feed"
+        },
+        {
+          "field": "device_model",
+          "op": "eq",
+          "value": "CC1310"
+        },
+        {
+          "field": "package",
+          "op": "in",
+          "value": [
+            "RGZ-VQFN48",
+            "RHB-VQFN32",
+            "RSM-VQFN32"
+          ]
+        },
+        {
+          "field": "technology",
+          "op": "in",
+          "value": [
+            "TI-proprietary-sub1",
+            "IEEE802.15.4g",
+            "Wireless-MBus",
+            "Wi-SUN"
+          ]
+        },
+        {
+          "field": "frequency_hz",
+          "op": "range_within",
+          "value": {
+            "min": 861000000,
+            "max": 1054000000,
+            "unit": "Hz"
+          }
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "component_ref",
+        "net_id",
+        "reference_design_revision",
+        "stackup_revision",
+        "antenna_implementation"
+      ],
+      "sources": [
+        "DATASHEET-TI-CC1310",
+        "VENDOR-TI-SWRA640"
+      ],
+      "explanation": "This entry intentionally covers only one listed CC1310 RF range. Other supported ranges require separately reviewed entries; never treat exclusion as proof that a component cannot work. No antenna, matching or routing dimensions transferred."
+    },
+    {
+      "id": "CAND-ESPRESSIF-TARGET-BRANCH",
+      "rule_ids": [
+        "OSS-001"
+      ],
+      "scope_level": "device_family",
+      "conditions": [
+        {
+          "field": "vendor",
+          "op": "eq",
+          "value": "Espressif"
+        },
+        {
+          "field": "net_role",
+          "op": "in",
+          "value": [
+            "rf_feed",
+            "clock",
+            "power"
+          ]
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "component_ref",
+        "device_model",
+        "package",
+        "rendered_guide_target",
+        "guide_revision"
+      ],
+      "sources": [
+        "OSS-ESPRESSIF"
+      ],
+      "explanation": "Select and read the exact rendered guide target; shared RST includes and default values cannot become all-device rules."
+    },
+    {
+      "id": "CAND-KEYSTONE-DDR3",
+      "rule_ids": [
+        "INT-002",
+        "INT-003",
+        "INT-004"
+      ],
+      "scope_level": "device_family",
+      "conditions": [
+        {
+          "field": "device_family",
+          "op": "eq",
+          "value": "TI-KeyStone"
+        },
+        {
+          "field": "technology",
+          "op": "eq",
+          "value": "DDR3"
+        },
+        {
+          "field": "net_role",
+          "op": "in",
+          "value": [
+            "memory_data",
+            "memory_clock",
+            "memory_ca"
+          ]
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "component_ref",
+        "device_model",
+        "package",
+        "memory_model",
+        "topology",
+        "training_configuration",
+        "stackup_revision",
+        "timing_budget"
+      ],
+      "sources": [
+        "VENDOR-TI-SPRABI1"
+      ],
+      "explanation": "Only reviewed KeyStone DDR3 guide scope; DDR4/5/LPDDR and other controllers are excluded, not mapped by similar names."
+    },
+    {
+      "id": "CAND-RS485-PHYSICAL-LINK",
+      "rule_ids": [
+        "INT-005",
+        "INT-007"
+      ],
+      "scope_level": "structural",
+      "conditions": [
+        {
+          "field": "technology",
+          "op": "eq",
+          "value": "RS-485"
+        },
+        {
+          "field": "net_role",
+          "op": "eq",
+          "value": "external_bus"
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "device_model",
+        "edge_time",
+        "cable_model",
+        "topology",
+        "termination",
+        "ground_domains"
+      ],
+      "sources": [
+        "VENDOR-TI-SLLA272"
+      ],
+      "explanation": "Whole transceiver-PCB-connector-cable path; no universal stub length, fixed line impedance or grounding scheme."
+    },
+    {
+      "id": "CAND-CLASSIC-CAN",
+      "rule_ids": [
+        "INT-006",
+        "INT-007"
+      ],
+      "scope_level": "structural",
+      "conditions": [
+        {
+          "field": "technology",
+          "op": "eq",
+          "value": "CAN-classic"
+        },
+        {
+          "field": "net_role",
+          "op": "eq",
+          "value": "external_bus"
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "device_model",
+        "bit_timing",
+        "cable_model",
+        "topology",
+        "termination",
+        "ground_domains"
+      ],
+      "sources": [
+        "VENDOR-TI-SLLA270"
+      ],
+      "explanation": "The reviewed guide is classic high-speed CAN. CAN-FD/XL need their own current evidence; do not inherit old numerical budgets."
+    },
+    {
+      "id": "CAND-ST-CRYSTAL",
+      "rule_ids": [
+        "ANA-005"
+      ],
+      "scope_level": "device_family",
+      "conditions": [
+        {
+          "field": "device_family",
+          "op": "in",
+          "value": [
+            "STM32",
+            "STM8"
+          ]
+        },
+        {
+          "field": "net_role",
+          "op": "eq",
+          "value": "crystal"
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "device_model",
+        "package",
+        "crystal_model",
+        "load_capacitance_budget",
+        "device_guide_revision"
+      ],
+      "sources": [
+        "VENDOR-ST-AN2867"
+      ],
+      "explanation": "Requires exact listed family/model guide and oscillator conditions. Not a rule for every MCU or all pins of an STM32."
+    },
+    {
+      "id": "CAND-QFN-SON-ASSEMBLY",
+      "rule_ids": [
+        "MFG-001",
+        "MFG-002",
+        "MFG-003"
+      ],
+      "scope_level": "process_specific",
+      "conditions": [
+        {
+          "field": "vendor",
+          "op": "eq",
+          "value": "Texas Instruments"
+        },
+        {
+          "field": "package_family",
+          "op": "in",
+          "value": [
+            "QFN",
+            "SON"
+          ]
+        },
+        {
+          "field": "net_role",
+          "op": "eq",
+          "value": "exposed_pad_assembly"
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "component_ref",
+        "device_model",
+        "package_drawing_revision",
+        "pcb_process",
+        "paste_stencil_process"
+      ],
+      "sources": [
+        "VENDOR-TI-SLUA271"
+      ],
+      "explanation": "Selected assembly guide; exact device package drawing and factory process still control. Cannot average with another package stencil coverage."
+    },
+    {
+      "id": "CAND-POWERPAD-ASSEMBLY",
+      "rule_ids": [
+        "MFG-001",
+        "MFG-002",
+        "MFG-003"
+      ],
+      "scope_level": "process_specific",
+      "conditions": [
+        {
+          "field": "vendor",
+          "op": "eq",
+          "value": "Texas Instruments"
+        },
+        {
+          "field": "package_family",
+          "op": "eq",
+          "value": "PowerPAD"
+        },
+        {
+          "field": "net_role",
+          "op": "eq",
+          "value": "exposed_pad_assembly"
+        }
+      ],
+      "required_facts": [
+        "board_revision",
+        "component_ref",
+        "device_model",
+        "package_drawing_revision",
+        "pcb_process",
+        "paste_stencil_process"
+      ],
+      "sources": [
+        "VENDOR-TI-SLMA002"
+      ],
+      "explanation": "PowerPAD-specific process candidate only, not a generic QFN recipe."
+    }
+  ]
+}
