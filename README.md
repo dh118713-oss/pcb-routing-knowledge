@@ -10,7 +10,7 @@ Author: **李继洲 (Li Jizhou)** · License: [MIT](LICENSE)
 ![Validation](https://img.shields.io/badge/tests-25%20passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-This project organizes professional books, standards, peer-reviewed papers, semiconductor-vendor documents, and public hardware experience into traceable engineering guidance. It is independent of any EDA product: EasyEDA, KiCad, and other EDA operation skills can consume its constraints and execute the work, while this project provides the engineering basis and review framework.
+The primary use case is **AI-assisted PCB design**. When an AI is asked to draw or review a PCB, this skill gives it a structured engineering basis before it starts routing: professional books, standards, peer-reviewed papers, semiconductor-vendor documents, and public hardware experience are organized into traceable guidance. It is independent of any EDA product: EasyEDA, KiCad, and other EDA operation skills can consume its constraints and execute the work, while this project provides the engineering basis and review framework.
 
 ## Why this project exists
 
@@ -18,7 +18,7 @@ This project is for people who want to turn an idea into a real circuit board.
 
 Many developers can use EDA software but have not yet had the chance to systematically learn return paths, stackups, impedance, power delivery, thermal design, EMC, and manufacturing. Others already have a real board to debug and need a clearer way to understand why a route, plane, or component placement matters. Being comfortable with software while still learning hardware does not prevent anyone from starting; a useful workflow should explain its reasons and keep its sources visible.
 
-This is **李继洲's first open-source project**. It aims to make reliable public engineering material easier to use, so people who are beginning to design boards can avoid some common detours and record the reasoning behind each decision, change, and verification step. It can work together with EasyEDA or another EDA operation skill: this project organizes engineering evidence and review questions, the EDA tool performs the edits, and the actual board still requires engineering decisions based on data, simulation, measurement, and manufacturing results.
+This is **李继洲's first open-source project**. It aims to make reliable public engineering material easier for an AI to use, so people who do not have time to study every hardware topic from the beginning can still ask an AI to assist with PCB layout and routing in a more traceable way. It can work together with EasyEDA or another EDA operation skill: this project organizes engineering evidence and review questions before and after routing, the EDA tool performs the edits, and the actual board still requires engineering decisions based on data, simulation, measurement, and manufacturing results.
 
 It is not an autorouter and it is not a certification system. It avoids unconditional rules such as “always make the power trace wider” or “copy the layout whenever the design is 2.4 GHz”. Instead, it asks for the device, net, stackup, operating condition, and manufacturing context before producing a reviewable recommendation. Corrections, counterexamples, and reproducible measurements are welcome.
 
@@ -80,6 +80,20 @@ The source set includes:
 The repository does not redistribute complete books, paid standards, or paper PDFs. It stores source records, original summaries, and links so that users can verify the material themselves.
 
 ## Quick start
+
+### Main use case: AI draws the PCB
+
+The intended call sequence is:
+
+```text
+Use $pcb-routing-knowledge to analyze the current PCB.
+Read the schematic, BOM, exact devices and packages, stackup, and manufacturing limits.
+Generate sourced routing constraints by component, pin, net segment, and board-level conflict.
+Then call the current EDA operation skill to place, route, pour copper, and export geometry.
+Finally, read back the geometry, DRC, simulation, and measurement evidence for review.
+```
+
+If the AI client does not support `$` skill syntax, ask it to read this repository's `SKILL.md` and follow the same sequence. The skill supplies routing strategy and review questions; it does not silently replace missing project facts or guarantee the result.
 
 ### For an AI or EDA workflow
 
