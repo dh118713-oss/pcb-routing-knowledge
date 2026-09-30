@@ -1,0 +1,81 @@
+name: Bug / engineering rule error
+description: Report broken behavior, an unsafe rule, or a validation mismatch.
+title: "[Bug] "
+labels:
+  - bug
+  - rules
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please remove proprietary design data. Share the smallest reproducible
+        example and identify any conclusion that still needs EDA, simulation,
+        or measurement.
+
+  - type: input
+    id: ai_client
+    attributes:
+      label: AI client and version
+      description: Which client or agent consumed the skill?
+      placeholder: e.g. Codex Desktop 2026.09
+    validations:
+      required: true
+
+  - type: input
+    id: eda_tool
+    attributes:
+      label: EDA tool and version
+      description: Include the tool and version when the report involves an EDA check.
+      placeholder: e.g. KiCad 9.0, EasyEDA Pro 2.x, or not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Board and input context
+      description: Summarize layer count, stackup, interfaces, power/current, and the relevant input or command.
+      placeholder: Describe the smallest reproducible board context.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      description: What rule, constraint, or validation result did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: What did the skill, script, or review produce instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and reproduction
+      description: Include commands, sanitized output, screenshots, measurements, or links to the relevant rule/source.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: follow_up
+    attributes:
+      label: Suggested correction or open question
+      description: Explain a proposed rule change or what needs clarification.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checklist
+      options:
+        - label: I removed confidential or personally identifying information.
+          required: true
+        - label: I understand this report does not replace EDA, simulation, or hardware verification.
+          required: true

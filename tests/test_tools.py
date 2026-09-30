@@ -1,4 +1,4 @@
-"""Behavior tests through the public command line (standard library only)."""
+"""Behavior tests through the public command-line tools."""
 import json
 from pathlib import Path
 import subprocess
@@ -27,6 +27,12 @@ class ToolTests(unittest.TestCase):
 
     def test_audit_does_not_pass_an_omitted_required_check(self):
         constraints = {'schema_version': 1, 'board_revision': 'rev-a',
+                       'schematic_revision': 'schematic-rev-a',
+                       'constraints_revision': 'constraints-rev-a',
+                       'design_complexity': {
+                           'level': 'beginner_simple',
+                           'rationale': 'Synthetic low-speed MCU example.',
+                           'evidence': [{'kind': 'design_input', 'id': 'demo', 'locator': 'fixture'}]},
                        'scope': 'Synthetic example: one power check', 'checks': [
             {'id': 'power-width', 'rule_id': 'PROJECT-001', 'target': 'VCC',
              'acceptance_criterion': 'Width satisfies the project constraint.',
@@ -42,6 +48,13 @@ class ToolTests(unittest.TestCase):
         result = json.loads(run.stdout)
         self.assertEqual(result['overall'], 'incomplete')
         self.assertEqual(result['missing_checks'], ['power-width'])
+
+    def test_audit_rejects_contract_values_outside_the_json_schema(self):
+        constraints, review = self.example_documents()
+        constraints['checks'][0]['method'] = 'guess'
+        run = self.audit_documents(constraints, review)
+        self.assertEqual(run.returncode, 2, run.stdout + run.stderr)
+        self.assertIn('validation failed', json.loads(run.stderr)['error'])
 
     def audit_documents(self, constraints, review):
         with tempfile.TemporaryDirectory() as directory:

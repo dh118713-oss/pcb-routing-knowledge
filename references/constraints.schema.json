@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCB routing knowledge constraints package",
+  "description": "Shape contract for a versioned PCB constraint package tied to an immutable schematic, board, and complexity assessment. Additional properties are allowed for caller-defined extensions such as parameters, severity, expected actions, dependencies, and rule categories; audit does not interpret them.",
+  "$defs": {
+    "nonemptyString": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "basis": {
+      "type": "object",
+      "required": ["kind", "id", "locator"],
+      "properties": {
+        "kind": {
+          "enum": ["source", "project_requirement"]
+        },
+        "id": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "locator": {
+          "$ref": "#/$defs/nonemptyString"
+        }
+      }
+    },
+    "complexityEvidence": {
+      "type": "object",
+      "required": ["kind", "id", "locator"],
+      "properties": {
+        "kind": {
+          "enum": ["design_input", "schematic", "project_requirement", "source", "manufacturing_input"]
+        },
+        "id": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "locator": {
+          "$ref": "#/$defs/nonemptyString"
+        }
+      }
+    },
+    "designComplexity": {
+      "type": "object",
+      "required": ["level", "rationale", "evidence"],
+      "properties": {
+        "level": {
+          "enum": ["beginner_simple", "intermediate", "advanced_manual_review", "unsupported_without_specialist_input"]
+        },
+        "rationale": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/complexityEvidence"
+          }
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": ["id", "rule_id", "target", "acceptance_criterion", "method", "basis"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "rule_id": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "target": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "acceptance_criterion": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "method": {
+          "enum": ["geometry", "drc", "calculation", "simulation", "measurement", "engineering_review"]
+        },
+        "basis": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/basis"
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "required": ["schema_version", "board_revision", "schematic_revision", "constraints_revision", "design_complexity", "scope", "checks"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "board_revision": {
+      "$ref": "#/$defs/nonemptyString"
+    },
+    "schematic_revision": {
+      "$ref": "#/$defs/nonemptyString"
+    },
+    "constraints_revision": {
+      "$ref": "#/$defs/nonemptyString"
+    },
+    "design_complexity": {
+      "$ref": "#/$defs/designComplexity"
+    },
+    "scope": {
+      "$ref": "#/$defs/nonemptyString"
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/check"
+      }
+    }
+  }
+}

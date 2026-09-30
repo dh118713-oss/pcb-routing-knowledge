@@ -1,0 +1,84 @@
+name: Board case / evidence feedback
+description: Share a de-identified board case, measurement, simulation, or manufacturing evidence.
+title: "[Case] "
+labels:
+  - case
+  - evidence
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share only de-identified information. A case is most useful when the
+        inputs, evidence, and observed outcome can be checked independently.
+
+  - type: dropdown
+    id: evidence_type
+    attributes:
+      label: Evidence type
+      options:
+        - Simulation
+        - Lab measurement
+        - DRC or manufacturing result
+        - Datasheet or literature
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: board_type
+    attributes:
+      label: Board type and stackup
+      description: Give a short, non-confidential description of the board and layer stack.
+      placeholder: e.g. 4-layer mixed-signal board, 1 oz outer copper
+    validations:
+      required: true
+
+  - type: textarea
+    id: design_context
+    attributes:
+      label: Design context
+      description: Describe the interfaces, return paths, power/current, edge rates, and routing question.
+      placeholder: Include only the context needed to reproduce or assess the case.
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and assumptions
+      description: List stackup, geometry, material, impedance, thermal, manufacturing, or measurement assumptions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Provide sanitized data, plots, screenshots, reports, or public references. Explain how it was obtained.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Observed outcome
+      description: State what happened, how it compares with the expectation, and any limits on the conclusion.
+    validations:
+      required: true
+
+  - type: textarea
+    id: follow_up
+    attributes:
+      label: Proposed rule or follow-up
+      description: Suggest a reusable rule, example, source update, or question for review.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checklist
+      options:
+        - label: I removed confidential or personally identifying information.
+          required: true
+        - label: I have permission to share the included evidence or links.
+          required: true

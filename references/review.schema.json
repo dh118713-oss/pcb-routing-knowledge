@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCB routing knowledge review results",
+  "description": "Shape contract for check-by-check review results tied to one immutable board revision. Additional properties are allowed for caller-defined evidence metadata; audit checks required references and revision consistency but does not inspect artifact contents.",
+  "$defs": {
+    "nonemptyString": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["artifact", "locator", "board_revision"],
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "locator": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "board_revision": {
+          "$ref": "#/$defs/nonemptyString"
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": ["id", "status", "rationale"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "status": {
+          "enum": ["pass", "fail", "unknown", "not_applicable"]
+        },
+        "rationale": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": ["pass", "not_applicable"]
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "required": ["schema_version", "board_revision", "checks"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "board_revision": {
+      "$ref": "#/$defs/nonemptyString"
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/check"
+      }
+    }
+  }
+}

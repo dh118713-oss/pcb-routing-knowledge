@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Small, offline evidence tools. No EDA, network or third-party dependency."""
+"""Small, offline evidence tools. No EDA or network access; JSON Schema validation is used for contracts."""
 import argparse
 import json
+import jsonschema
 import math
 from pathlib import Path
 import sys
@@ -38,6 +39,18 @@ def require_text(value, field):
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f'{field}: non-empty string required')
 
+def validate_contract(document, schema_name, document_name):
+    schema_path = ROOT / 'references' / schema_name
+    schema = read_json(schema_path)
+    validator = jsonschema.Draft202012Validator(schema)
+    errors = sorted(validator.iter_errors(document), key=lambda error: list(map(str, error.absolute_path)))
+    if errors:
+        details = '; '.join(
+            f'{document_name}.{".".join(map(str, error.absolute_path)) or "<root>"}: {error.message}'
+            for error in errors[:10]
+        )
+        raise ValueError(f'{schema_name} validation failed: {details}')
+
 def indexed_checks(document, name, allow_empty=False):
     if not isinstance(document, dict):
         raise ValueError(f'{name}: object required')
@@ -59,6 +72,8 @@ def indexed_checks(document, name, allow_empty=False):
 
 def audit(args):
     constraints, review = read_json(args.constraints), read_json(args.review)
+    validate_contract(constraints, 'constraints.schema.json', 'constraints')
+    validate_contract(review, 'review.schema.json', 'review')
     required = indexed_checks(constraints, 'constraints')
     results = indexed_checks(review, 'review', allow_empty=True)
     require_text(constraints.get('scope'), 'constraints.scope')

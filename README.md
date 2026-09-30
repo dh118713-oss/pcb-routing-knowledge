@@ -1,4 +1,4 @@
-# PCB Routing Knowledge
+# 硬件学习蛊skill · PCB Routing Knowledge
 
 **Evidence-backed PCB layout and routing decisions, with explicit applicability and verification.**
 
@@ -6,8 +6,10 @@ An EDA-independent knowledge skill for AI engineering assistants and PCB designe
 
 Author: **李继洲 (Li Jizhou)** · License: [MIT](LICENSE)
 
+这是“硬件学习蛊skill”的 PCB 模块。它与[原理图设计 Skill](https://github.com/dh118713-oss/schematic-design-skill)和[嘉立创EDA执行 Skill](https://github.com/dh118713-oss/easyeda-execution-skill)配合，为嵌入式初学者提供从原理图语义到 PCB 约束、执行和检查的完整路径。
+
 ![Status](https://img.shields.io/badge/status-initial%20research%20release-blue)
-![Validation](https://img.shields.io/badge/tests-25%20passing-brightgreen)
+![Validation](https://github.com/dh118713-oss/pcb-routing-knowledge/actions/workflows/validate.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 The primary use case is **AI-assisted PCB design**. When an AI is asked to draw or review a PCB, this skill gives it a structured engineering basis before it starts routing: professional books, standards, peer-reviewed papers, semiconductor-vendor documents, and public hardware experience are organized into traceable guidance. It is independent of any EDA product: EasyEDA, KiCad, and other EDA operation skills can consume its constraints and execute the work, while this project provides the engineering basis and review framework.
@@ -39,6 +41,10 @@ It is not an autorouter and it is not a certification system. It avoids uncondit
 
 Numerical values are selected only after the current project conditions and applicable source have been checked. Missing conditions remain explicit `unknown` values; the project does not invent current, stackup, thermal, or clearance assumptions. The multilayer guidance is a composition checklist, not a universal layer-stack template.
 
+### Beginner board boundary
+
+The recommended first use is a low-speed MCU board with a known package, one or two power rails, LEDs, buttons, UART, I2C/SPI peripherals, basic ADC, debug access, and ordinary two-layer or four-layer manufacturing. The workflow can carry a confirmed schematic into PCB constraints and EasyEDA operations, but it does not promise automatic completion of DDR/SerDes, RF, antennas, high-voltage or mains, complex power stages, large-current thermal design, isolation safety, or certification work. Read [`references/complexity-levels.md`](references/complexity-levels.md) before starting; high-risk features remain explicit manual-review gates.
+
 ## How the workflow works
 
 ```mermaid
@@ -55,7 +61,7 @@ flowchart LR
     G -->|scope satisfied| I[Deliver result and remaining validation]
 ```
 
-The process is independent of EDA net naming, APIs, and local directories. The consuming EDA skill maps the constraints into its own rules and geometry operations; successfully setting a rule does not prove that the geometry satisfies it. See the [integration contract](references/integration-contract.md).
+The process is independent of EDA net naming, APIs, and local directories. The consuming EDA skill maps the constraints into its own rules and geometry operations; successfully setting a rule does not prove that the geometry satisfies it. See the [integration contract](references/integration-contract.md) and the [constraints](references/constraints.schema.json) and [review result](references/review.schema.json) JSON Schemas.
 
 For a mixed board, local rules are created first for each component, pin, net, and route segment. The board is then checked as a whole for shared PDN and return paths, reference planes, thermal spreading, RF keep-outs, isolation corridors, manufacturing, and test access. A local `pass` never automatically becomes a board-level `pass`.
 
@@ -80,6 +86,46 @@ The source set includes:
 The repository does not redistribute complete books, paid standards, or paper PDFs. It stores source records, original summaries, and links so that users can verify the material themselves.
 
 ## Quick start
+
+### Five-minute first run
+
+This repository is a skill and evidence toolkit, not an EDA plugin. Make the
+repository available to the AI client that will consume it, then use one of
+these two entry points:
+
+- **Skill-aware client:** register the repository as a local skill according to
+  that client's skill-discovery instructions, then invoke
+  `$pcb-routing-knowledge`.
+- **Any other client:** open this repository and ask the client to read
+  [`SKILL.md`](SKILL.md) before analyzing the board. Do not paste only a rule
+  paragraph; the workflow and evidence boundaries are part of the skill.
+
+Copy-paste prompt:
+
+```text
+Read this repository's SKILL.md and references/integration-contract.md.
+Analyze the attached PCB inputs before proposing layout or routing changes.
+Keep missing facts as unknown, cite the source and locator for each constraint,
+separate hard requirements from suggestions, and return a reviewable constraint
+package plus the missing evidence needed for verification. Do not claim that a
+clean DRC or a completed checklist proves SI/PI/EMC, safety, or production
+readiness.
+```
+
+Run the included offline smoke path from the repository root:
+
+```sh
+python -m pip install -r requirements-dev.txt
+python scripts/select_rules.py --profile examples/applicability/rf-2g4.json
+python scripts/pcb_knowledge.py audit \
+  --constraints examples/constraints.json \
+  --review examples/review.incomplete.json
+```
+
+The second command intentionally exits with code `1`: the synthetic example
+contains one failing check and one unknown check. That is the expected evidence
+loop, not a broken installation. See the [runnable walkthrough](examples/walkthrough/README.md)
+for the input, expected states, and the transition to a real board snapshot.
 
 ### Main use case: AI draws the PCB
 
@@ -142,10 +188,13 @@ references/topics/                  Conditional engineering rules
 references/sources/                 Versioned source records and reading status
 references/cases/                   Public cases and open-source project analyses
 references/integration-contract.md EDA-independent interface
+references/*schema.json             Machine-checkable constraint/review contracts
 scripts/                            Offline search, calculation, and evidence tools
 examples/                           Clearly marked synthetic examples
+examples/walkthrough/               Runnable minimal evidence-loop walkthrough
 tests/                              Behavioral tests
-.github/workflows/                  Validation workflow for future pushes
+.github/workflows/                  Ubuntu/Windows validation workflow
+.github/ISSUE_TEMPLATE/             Rule-error and board-evidence intake forms
 ```
 
 ## Validation and contribution
@@ -157,9 +206,9 @@ python scripts/build_source_map.py --check
 python -m unittest discover -s tests -v
 ```
 
-The current local validation includes 25 passing tests, source and link checks, schema checks, applicability examples, and a clean-copy portability run. See [`VALIDATION.md`](VALIDATION.md) for the exact scope and the remaining gaps. The CI workflow is configuration for future GitHub runs; it is not evidence that a remote run has already passed.
+The current local validation includes 33 passing tests, source and link checks, schema checks, applicability examples, and a clean-copy portability run. See [`VALIDATION.md`](VALIDATION.md) for the exact scope and remaining gaps. CI runs on Ubuntu and Windows for pushes, pull requests, and manual runs; check the [Actions page](https://github.com/dh118713-oss/pcb-routing-knowledge/actions) for the latest result.
 
-Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a source or a board case. Prefer primary sources, record applicability and limitations, preserve licenses, and provide reproducible measurements or failure evidence when making an engineering claim.
+Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a source or a board case. Prefer primary sources, record applicability and limitations, preserve licenses, and provide reproducible measurements or failure evidence when making an engineering claim. Once the repository's issue forms are available on GitHub, use them to report a rule/tool problem or submit de-identified board evidence; do not include private design files or measurements you do not have permission to share.
 
 ## Author
 

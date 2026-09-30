@@ -1,6 +1,15 @@
 {
   "schema_version": 1,
   "board_revision": "synthetic-demo-r1",
+  "schematic_revision": "synthetic-schematic-r1",
+  "constraints_revision": "synthetic-constraints-r1",
+  "design_complexity": {
+    "level": "beginner_simple",
+    "rationale": "合成夹具假定为低速、单电源 MCU 入门板，仅用于展示字段和证据闭环，不代表真实板级判级。",
+    "evidence": [
+      {"kind": "design_input", "id": "synthetic-beginner-board", "locator": "examples/README.md#合成要求"}
+    ]
+  },
   "scope": "合成接口演示：只有VCC线宽和返回路径两项，不是完整板级检查集。",
   "checks": [
     {"id": "vcc-width", "rule_id": "PROJECT-DEMO-001", "target": "VCC", "acceptance_criterion": "按本合成样例要求，所有VCC导体线段至少0.5 mm；此值不能复用为通用电源线宽。", "method": "geometry", "basis": [{"kind": "project_requirement", "id": "DEMO-REQ-01", "locator": "examples/README.md#合成要求"}]},
