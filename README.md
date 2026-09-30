@@ -215,3 +215,23 @@ Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a source or a boa
 **李继洲 (Li Jizhou)**
 
 This is my first open-source project. The goal is to make the path from “I can use the software” to “I can reason about the real board” a little clearer, while staying honest about what still needs an experienced engineer, a simulator, a laboratory, and a manufacturer.
+
+## 硬件学习蛊skill 项目寄语
+
+## 作者的话
+
+2018 年，我刚步入社会，成为一名嵌入式工程助理。那时我怀着对嵌入式的热爱，不怕辛苦，在每天工作 12 个小时以上的情况下，仍然坚持学习 C 语言和硬件知识。我始终相信坚持的力量，也相信在 AI 时代，我们依然要保持学习。
+
+在快节奏的工作和生活中，如何更快学会一门知识，更快做出一块用于调试的 PCB，并合理运用 AI 提升效率，是我做这个开源项目的原因。我希望它能帮助更多刚入门的朋友少走一些弯路，先做出自己的第一块板，再在实践中继续成长。学会并坚持下去，你会得到“坚持仙蛊”的奖励。
+
+就像《蛊真人》里的古月方源，面对各种危险境地，最后在逆流河练出了坚持蛊：
+
+> 我曾经呐喊过，渐渐地我发不出声音；‌
+> 我曾经哭泣过，渐渐地我不再流泪；‌
+> 我曾经悲伤过，渐渐地我能承受一切；‌
+> 我曾经喜悦过，渐渐地我看淡世间。‌
+> ‌而如今！我只剩下面无表情。我的目光如磐石般坚硬，我的心中只剩下坚持。‌
+> ‌这就是我，一个小人物，方源的坚持。‌
+> 光芒骤放，不可逼视！坚持仙蛊，在这一刻，炼成！
+
+如果这个项目能让一个初学者更快做出自己的板子，它就有了继续完善的意义。欢迎通过 Issue 提交可复现的问题、资料和改进建议。
